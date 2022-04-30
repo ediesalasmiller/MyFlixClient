@@ -2,7 +2,8 @@ import React from "react";
 
 export class MovieView extends React.Component {
   render() {
-    const { movie } = this.props;
+      //why does passing onBackClick as an argument here execute the back button?
+    const { movie, onBackClick } = this.props;
     return (
       <div className="movie-view">
         <div className="movie-poster">
@@ -16,6 +17,13 @@ export class MovieView extends React.Component {
           <span className="label"> Description: </span>
           <span className="value">{movie.Description}</span>
         </div>
+        <button
+          onClick={() => {
+            onBackClick(null);
+          }}
+        >
+          Back
+        </button>
       </div>
     );
   }
