@@ -1,8 +1,14 @@
 import React from "react";
 
 export class MovieView extends React.Component {
+  //adding componentDidMount() lifecycle method and keypress event listener
+  componentDidMount() {
+    document.addEventListener("keypress", (event) => {
+      console.log(event.key);
+    });
+  }
   render() {
-      //why does passing onBackClick as an argument here execute the back button?
+    //why does passing onBackClick as an argument here execute the back button?
     const { movie, onBackClick } = this.props;
     return (
       <div className="movie-view">
