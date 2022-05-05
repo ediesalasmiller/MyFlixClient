@@ -25337,28 +25337,18 @@ class MainView extends _reactDefault.default.Component {
         super();
         this.state = {
             //movies state
-            movies: [
-                {
-                    _id: 1,
-                    Title: "Inception",
-                    Description: "A dream in a dream in a dream.",
-                    ImagePath: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg"
-                },
-                {
-                    _id: 2,
-                    Title: "The Shawshank Redemption",
-                    Description: "Two guys in jail... bummer, they get out, woo",
-                    ImagePath: "https://m.media-amazon.com/images/M/MV5BNTYxOTYyMzE3NV5BMl5BanBnXkFtZTcwOTMxNDY3Mw@@._V1_.jpg"
-                },
-                {
-                    _id: 3,
-                    Title: "Gladiator",
-                    Description: "Never seen it tbh",
-                    ImagePath: "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
-                }, 
-            ],
+            movies: [],
             selectedMovie: null
         };
+    }
+    componentDidMount() {
+        _axiosDefault.default.get("https://edieflixdb.herokuapp.com/movies").then((response)=>{
+            this.setState({
+                movies: response.data
+            });
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
     setSelectedMovie(newSelectedMovie) {
         this.setState({
@@ -25371,16 +25361,15 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 49
+                lineNumber: 40
             },
-            __self: this,
-            children: "The list is empty!"
+            __self: this
         }));
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 52
+                lineNumber: 43
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_viewMovie.MovieView, {
@@ -25390,7 +25379,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 54
+                    lineNumber: 45
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -25400,7 +25389,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 62
+                        lineNumber: 53
                     },
                     __self: this
                 }, movie._id)
