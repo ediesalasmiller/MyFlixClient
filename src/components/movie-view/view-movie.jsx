@@ -1,18 +1,6 @@
 import React from "react";
 
 export class MovieView extends React.Component {
-  keypressCallback(event) {
-    console.log(event.key);
-  }
-  //adding componentDidMount() lifecycle method and keypress event listener
-  componentDidMount() {
-    document.addEventListener("keypress", this.keypressCallback);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keypress", this.keypressCallback);
-  }
-
   render() {
     //why does passing onBackClick as an argument here execute the back button?
     const { movie, onBackClick } = this.props;
