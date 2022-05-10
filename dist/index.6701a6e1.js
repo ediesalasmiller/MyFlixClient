@@ -28847,7 +28847,7 @@ class MovieView extends _reactDefault.default.Component {
                         lineNumber: 21
                     },
                     __self: this,
-                    children: "Back"
+                    children: "Back!"
                 })
             ]
         }));
