@@ -1,4 +1,6 @@
 import React from "react";
+import { MovieCard } from "../movie-card/movie-card";
+
 import PropTypes from "prop-types";
 
 export class MovieView extends React.Component {
