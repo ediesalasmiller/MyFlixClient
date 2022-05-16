@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/ediesalasmiller/MyFlixClient/issues"
   },
-  "homepage": "https://github.com/ediesalasmiller/MyFlixClient",
+  "homepage": "https://ediesalasmiller.github.io/MyFlixClient",
   "dependencies": {
     "axios": "^0.27.2",
     "prop-types": "^15.8.1",
