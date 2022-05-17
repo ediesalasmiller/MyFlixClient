@@ -12,6 +12,7 @@ export function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
     axios
+      //
       .post("https://ediesalasmiller.github.io/MyFlixClient/login", {
         Username: username,
         Password: password,
