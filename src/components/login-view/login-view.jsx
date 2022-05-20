@@ -13,7 +13,7 @@ export function LoginView(props) {
     /* Send a request to the server for authentication */
     axios
       //
-      .post("https://ediesalasmiller.github.io/MyFlixClient/login", {
+      .post("https://edieflixdb.herokuapp.com/login", {
         Username: username,
         Password: password,
       })
