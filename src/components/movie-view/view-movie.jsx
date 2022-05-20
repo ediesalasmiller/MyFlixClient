@@ -1,5 +1,6 @@
 import React from "react";
 import { MovieCard } from "../movie-card/movie-card";
+import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
@@ -27,6 +28,13 @@ export class MovieView extends React.Component {
         >
           Back
         </button>
+        <Link to={`/directors/${movie.Director.Name}`}>
+          <Button variant="link">Director</Button>
+        </Link>
+
+        <Link to={`/genres/${movie.Genre.Name}`}>
+          <Button variant="link">Genre</Button>
+        </Link>
       </div>
     );
   }
