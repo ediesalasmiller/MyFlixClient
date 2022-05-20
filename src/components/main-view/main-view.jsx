@@ -3,10 +3,13 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/view-movie";
+
 //MainView state
 export class MainView extends React.Component {
   constructor() {
