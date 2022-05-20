@@ -7,12 +7,34 @@ import axios from "axios";
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  //declare hook for each input
+  const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr("Username Required");
+      isReq = false;
+    } else if (username.length < 2) {
+      setUsernameErr("Username must be 2 characters long");
+      isReq = false;
+    }
+    if (!password) {
+      setPasswordErr("Password Required");
+      isReq = false;
+    } else if (password.length < 4) {
+      setPassword("Password must be 4 characters long");
+      isReq = false;
+    }
+
+    return isReq;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
     axios
-      //
       .post("https://edieflixdb.herokuapp.com/login", {
         Username: username,
         Password: password,
@@ -34,7 +56,9 @@ export function LoginView(props) {
         <Form.Control
           type="text"
           onChange={(e) => setUsername(e.target.value)}
-        />
+        />{" "}
+        {/* code added here to display validation error */}
+        {usernameErr && <p>{usernameErr}</p>}
       </Form.Group>
 
       <Form.Group controlId="formPassword">
@@ -43,6 +67,8 @@ export function LoginView(props) {
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        {/* code added here to display validation error */}
+        {passwordErr && <p>{passwordErr}</p>}
       </Form.Group>
       <Button variant="primary" type="submit" onClick={handleSubmit}>
         Submit
