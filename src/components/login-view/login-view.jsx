@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import { RegistrationView } from "../registration-view/registration-view";
 import axios from "axios";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   //declare hook for each input
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
@@ -36,8 +38,8 @@ export function LoginView(props) {
     /* Send a request to the server for authentication */
     axios
       .post("https://edieflixdb.herokuapp.com/login", {
-        Username: username,
-        Password: password,
+        username: username,
+        password: password,
       })
       .then((response) => {
         const data = response.data;
@@ -45,7 +47,9 @@ export function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch((e) => {
-        console.log("no such user");
+        alert("No such user, register!");
+        window.open("/register", "_self");
+        console.log(e);
       });
   };
 

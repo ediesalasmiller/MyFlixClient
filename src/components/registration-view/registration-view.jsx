@@ -20,10 +20,6 @@ export function RegistrationView(props) {
 
   const validate = () => {
     let isReq = true;
-    if (name) {
-      setValues({ ...values, nameErr: "Name is required" });
-      isReq = false;
-    }
     if (!username) {
       setValues({ ...values, usernameErr: "Username is required" });
       isReq = false;
@@ -44,13 +40,13 @@ export function RegistrationView(props) {
       });
       isReq = false;
     }
-    if (!email) {
-      setValues({ ...values, emailErr: "Email is required" });
-      isReq = false;
-    } else if (email.indexOf("@") === -1) {
-      setValues({ ...values, emailErr: "Email not valid" });
-      isReq = false;
-    }
+    //   if (!email) {
+    //     setValues({ ...values, emailErr: "Email is required" });
+    //     isReq = false;
+    //   } else if (email.indexOf("@") === -1) {
+    //     setValues({ ...values, emailErr: "Email not valid" });
+    //     isReq = false;
+    //   }
     return isReq;
   };
 
@@ -60,10 +56,9 @@ export function RegistrationView(props) {
     if (isReq) {
       axios
         .post("https://edieflixdb.herokuapp.com/users", {
-          Name: name,
           Username: username,
           Password: password,
-          Email: email,
+          // Email: email,
         })
         .then((response) => {
           const data = response.data;
