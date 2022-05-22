@@ -86,47 +86,61 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, user } = this.state;
-
-    if (!user)
-      return (
-        <Row>
-          <Col>
-            <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />{" "}
-          </Col>
-        </Row>
-      );
-
+    // when i remove this my code breaks
+    // if (!user)
+    //   return (
+    //     <Row>
+    //       <Col>
+    //         <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />{" "}
+    //       </Col>
+    //     </Row>
+    //   );
     // if (movies.length === 0) return <div className="main-view" />;
-    return (
-      <Router>
-        <Row className="main-view justify-content-md-center">
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return movies.map((m) => (
-                <Col md={3} key={m._id}>
-                  <MovieCard movie={m} />
-                </Col>
-              ));
-            }}
-          />
-          <Route
-            //to display single movie view- we have fixed fragment above, to prevent too many matching URLs
-            path="/movies/:movieId"
-            render={({ match }) => {
+
+    <Router>
+      <Row className="main-view justify-content-md-center">
+        <Route
+          exact
+          path="/"
+          render={() => {
+            if (!user)
               return (
-                <Col md={8}>
-                  <MovieView
-                    movie={movies.find((m) => m._id === match.params.movieId)}
-                  />
+                <Col>
+                  <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                 </Col>
               );
-            }}
-          />
-        </Row>
-      </Router>
-    );
+            return movies.map((m) => (
+              <Col md={3} key={m._id}>
+                <MovieCard movie={m} />
+              </Col>
+            ));
+          }}
+        />
+        <Route
+          path="/register"
+          render={() => {
+            return (
+              <Col>
+                <RegistrationView />
+              </Col>
+            );
+          }}
+        />
+        <Route
+          //to display single movie view- we have fixed fragment above, to prevent too many matching URLs
+          path="/movies/:movieId"
+          render={({ match }) => {
+            return (
+              <Col md={8}>
+                <MovieView
+                  movie={movies.find((m) => m._id === match.params.movieId)}
+                />
+              </Col>
+            );
+          }}
+        />
+      </Row>
+    </Router>;
   }
 }
 // return (

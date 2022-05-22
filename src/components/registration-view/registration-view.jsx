@@ -39,13 +39,13 @@ export function RegistrationView(props) {
       });
       isReq = false;
     }
-      if (!email) {
-        setValues({ ...values, emailErr: "Email is required" });
-        isReq = false;
-      } else if (email.indexOf("@") === -1) {
-        setValues({ ...values, emailErr: "Email not valid" });
-        isReq = false;
-      }
+    if (!email) {
+      setValues({ ...values, emailErr: "Email is required" });
+      isReq = false;
+    } else if (email.indexOf("@") === -1) {
+      setValues({ ...values, emailErr: "Email not valid" });
+      isReq = false;
+    }
     return isReq;
   };
 
@@ -57,7 +57,7 @@ export function RegistrationView(props) {
         .post("https://edieflixdb.herokuapp.com/users", {
           Username: username,
           Password: password,
-          // Email: email,
+          Email: email,
         })
         .then((response) => {
           const data = response.data;
@@ -73,11 +73,12 @@ export function RegistrationView(props) {
   };
 
   return (
-    <Form>
+    <Form className="registration-form">
       <Form.Group className="mb-3" controlId="formUsername">
         <Form.Label>Username </Form.Label>
         <Form.Control
           type="text"
+          placeholder="2 character minimum"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -88,6 +89,7 @@ export function RegistrationView(props) {
         <Form.Label>Password </Form.Label>
         <Form.Control
           type="password"
+          placeholder="4 chracter minimum"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -110,18 +112,18 @@ export function RegistrationView(props) {
       </Button>
       <p></p>
       <p>
-        Already registered <Link to={"/"}>sign in</Link> here
+        Already registered? <Link to={"/"}>sign in</Link> here
       </p>
     </Form>
   );
 }
 
-RegistrationView.propTypes = {
-  register: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-  }).isRequired,
-  onRegistration: PropTypes.func.isRequired,
-};
+// RegistrationView.propTypes = {
+//   register: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Username: PropTypes.string.isRequired,
+//     Password: PropTypes.string.isRequired,
+//     Email: PropTypes.string.isRequired,
+//   }).isRequired,
+//   onRegistration: PropTypes.func.isRequired,
+// };
