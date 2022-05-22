@@ -75,16 +75,6 @@ export function RegistrationView(props) {
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formName">
-        <Form.Label>Name </Form.Label>
-        <Form.Control
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {values.nameErr && <p>{values.nameErr}</p>}
-      </Form.Group>
-
       <Form.Group className="mb-3" controlId="formUsername">
         <Form.Label>Username </Form.Label>
         <Form.Control

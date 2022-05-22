@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 //BrowserRouter implements states based routing, if you want hash-based, replace with HashRouter
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -88,7 +88,7 @@ export class MainView extends React.Component {
     const { movies, user } = this.state;
 
     return (
-      <Router>
+      <Routes>
         <Row className="main-view justify-content-md-center">
           <Route
             exact
@@ -166,7 +166,7 @@ export class MainView extends React.Component {
             }}
           />
         </Row>
-      </Router>
+      </Routes>
     );
   }
 }
