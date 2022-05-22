@@ -32453,13 +32453,19 @@ function RegistrationView(props) {
             });
             isReq = false;
         }
-        //   if (!email) {
-        //     setValues({ ...values, emailErr: "Email is required" });
-        //     isReq = false;
-        //   } else if (email.indexOf("@") === -1) {
-        //     setValues({ ...values, emailErr: "Email not valid" });
-        //     isReq = false;
-        //   }
+        if (!email) {
+            setValues({
+                ...values,
+                emailErr: "Email is required"
+            });
+            isReq = false;
+        } else if (email.indexOf("@") === -1) {
+            setValues({
+                ...values,
+                emailErr: "Email not valid"
+            });
+            isReq = false;
+        }
         return isReq;
     };
     const handleSubmit = (e)=>{
