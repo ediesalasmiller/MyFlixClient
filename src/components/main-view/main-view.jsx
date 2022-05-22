@@ -3,6 +3,7 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+//BrowserRouter implements states based routing, if you want hash-based, replace with HashRouter
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
@@ -111,6 +112,7 @@ export class MainView extends React.Component {
             }}
           />
           <Route
+            //to display single movie view- we have fixed fragment above, to prevent too many matching URLs
             path="/movies/:movieId"
             render={({ match }) => {
               return (
