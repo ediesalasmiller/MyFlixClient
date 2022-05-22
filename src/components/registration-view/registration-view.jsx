@@ -12,7 +12,6 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState("");
   //useState hook.. array instead of all seperate like Login View.. why???
   const [values, setValues] = useState({
-    nameErr: "",
     usernameErr: "",
     password: "",
     emailErr: "",
