@@ -25427,13 +25427,16 @@ class MainView extends _reactDefault.default.Component {
             });
             this.getMovies(accessToken);
         }
-        _axiosDefault.default.get("https://edieflixdb.herokuapp.com/movies").then((response)=>{
-            this.setState({
-                movies: response.data
-            });
-        }).catch((error)=>{
-            console.log(error);
-        });
+    // axios
+    //   .get("https://edieflixdb.herokuapp.com/movies")
+    //   .then((response) => {
+    //     this.setState({
+    //       movies: response.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     }
     setSelectedMovie(newSelectedMovie) {
         this.setState({
@@ -25442,12 +25445,10 @@ class MainView extends _reactDefault.default.Component {
     }
     onLoggedIn(authData) {
         console.log(authData);
-        this.setState({
-            user: authData.user.Username
-        });
+        setUser(authData.user.Username);
         localStorage.setItem("token", authData.token);
         localStorage.setItem("user", authData.user.Username);
-        this.getMovies(authData.token);
+        setLoading(false);
     }
     onLoggedOut() {
         localStorage.removeItem("token");
@@ -25472,16 +25473,17 @@ class MainView extends _reactDefault.default.Component {
     }
     render() {
         const { movies , user  } = this.state;
+        // when i remove this my code breaks
         if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_rowDefault.default, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 92
+                lineNumber: 94
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_colDefault.default, {
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 93
+                    lineNumber: 95
                 },
                 __self: this,
                 children: [
@@ -25490,7 +25492,7 @@ class MainView extends _reactDefault.default.Component {
                         ,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 94
+                            lineNumber: 96
                         },
                         __self: this
                     }),
@@ -25502,21 +25504,21 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 99
+                lineNumber: 100
             },
             __self: this
         }));
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
+        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 101
+                lineNumber: 102
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                 className: "main-view justify-content-md-center",
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 102
+                    lineNumber: 103
                 },
                 __self: this,
                 children: [
@@ -25524,6 +25526,11 @@ class MainView extends _reactDefault.default.Component {
                         exact: true,
                         path: "/",
                         render: ()=>{
+                            if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                                children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
+                                    onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                                })
+                            }));
                             return movies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                     md: 3,
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -25534,7 +25541,21 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 103
+                            lineNumber: 104
+                        },
+                        __self: this
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                        path: "/register",
+                        render: ()=>{
+                            if (user) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Redirect, {
+                                to: "/"
+                            }));
+                            return;
+                        },
+                        __source: {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 121
                         },
                         __self: this
                     }),
@@ -25552,13 +25573,13 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 114
+                            lineNumber: 131
                         },
                         __self: this
                     })
                 ]
             })
-        }));
+        });
     }
 }
 
@@ -25567,7 +25588,7 @@ class MainView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","react-router-dom":"kjA5T","../login-view/login-view":"054li","../registration-view/registration-view":"aP2YV","../movie-card/movie-card":"6EiBJ","../movie-view/view-movie":"3cAU5","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"iYoWk":[function(require,module,exports) {
+},{"react":"6TuXu","axios":"iYoWk","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","react-router-dom":"kjA5T","../login-view/login-view":"054li","../registration-view/registration-view":"aP2YV","../movie-card/movie-card":"6EiBJ","../movie-view/view-movie":"3cAU5","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react/jsx-runtime":"8xIwr"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -30672,6 +30693,9 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _registrationView = require("../registration-view/registration-view");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
@@ -30702,20 +30726,23 @@ function LoginView(props) {
     };
     const handleSubmit = (e)=>{
         e.preventDefault();
-        /* Send a request to the server for authentication */ _axiosDefault.default.post("https://edieflixdb.herokuapp.com/login", {
-            Username: username,
-            Password: password
+        const isReq = validate();
+        if (isReq) /* Send a request to the server for authentication */ _axiosDefault.default.post("https://edieflixdb.herokuapp.com/login", {
+            username: username,
+            password: password
         }).then((response)=>{
             const data = response.data;
             /* then call props.onLoggedIn(username) */ props.onLoggedIn(data);
         }).catch((e1)=>{
-            console.log("no such user");
+            alert("No such user, register!");
+            window.open("/register", "_self");
+            console.log(e1);
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 53
+            lineNumber: 61
         },
         __self: this,
         children: [
@@ -30723,14 +30750,14 @@ function LoginView(props) {
                 controlId: "formUsername",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 54
+                    lineNumber: 62
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 55
+                            lineNumber: 63
                         },
                         __self: this,
                         children: "Username:"
@@ -30741,7 +30768,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 56
+                            lineNumber: 64
                         },
                         __self: this
                     }),
@@ -30749,7 +30776,7 @@ function LoginView(props) {
                     usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 61
+                            lineNumber: 69
                         },
                         __self: this,
                         children: usernameErr
@@ -30760,14 +30787,14 @@ function LoginView(props) {
                 controlId: "formPassword",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 64
+                    lineNumber: 71
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 65
+                            lineNumber: 72
                         },
                         __self: this,
                         children: "Password:"
@@ -30778,14 +30805,14 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 66
+                            lineNumber: 73
                         },
                         __self: this
                     }),
                     passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 71
+                            lineNumber: 78
                         },
                         __self: this,
                         children: passwordErr
@@ -30798,7 +30825,7 @@ function LoginView(props) {
                 onClick: handleSubmit,
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 73
+                    lineNumber: 80
                 },
                 __self: this,
                 children: "Submit"
@@ -30808,6 +30835,9 @@ function LoginView(props) {
 }
 _s(LoginView, "8pGqNa6D1L55vC7VE2hBm7jlBGo=");
 _c = LoginView;
+LoginView.propTypes = {
+    onLoggedIn: _propTypesDefault.default.func.isRequired
+};
 var _c;
 $RefreshReg$(_c, "LoginView");
 
@@ -30816,7 +30846,127 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","axios":"iYoWk","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"5ykgY":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","axios":"iYoWk","../registration-view/registration-view":"aP2YV","prop-types":"1tgq3"}],"eNA1M":[function(require,module,exports) {
+"use strict";
+var Refresh = require('react-refresh/runtime');
+function debounce(func, delay) {
+    var args;
+    var timeout = undefined;
+    return function(args1) {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            timeout = undefined;
+            func.call(null, args1);
+        }, delay);
+    };
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module.id + ' ' + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module) {
+    if (isReactRefreshBoundary(module.exports)) {
+        registerExportsForReactRefresh(module);
+        if (module.hot) {
+            module.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module.exports;
+            });
+            module.hot.accept(function(getParents) {
+                var prevExports = module.hot.data.prevExports;
+                var nextExports = module.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        if (key === '__esModule') continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module) {
+    var exports = module.exports, id = module.id;
+    Refresh.register(exports, id + ' %exports%');
+    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = '__esModule' in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + ' %exports% ' + key);
+    }
+}
+
+},{"react-refresh/runtime":"13VwG"}],"5ykgY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -32273,127 +32423,7 @@ const Button = /*#__PURE__*/ _react.forwardRef((_ref, ref)=>{
 Button.displayName = 'Button';
 exports.default = Button;
 
-},{"react":"6TuXu","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q"}],"eNA1M":[function(require,module,exports) {
-"use strict";
-var Refresh = require('react-refresh/runtime');
-function debounce(func, delay) {
-    var args;
-    var timeout = undefined;
-    return function(args1) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args1);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module.id + ' ' + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module) {
-    if (isReactRefreshBoundary(module.exports)) {
-        registerExportsForReactRefresh(module);
-        if (module.hot) {
-            module.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module.exports;
-            });
-            module.hot.accept(function(getParents) {
-                var prevExports = module.hot.data.prevExports;
-                var nextExports = module.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        if (key === '__esModule') continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module) {
-    var exports = module.exports, id = module.id;
-    Refresh.register(exports, id + ' %exports%');
-    if (exports == null || typeof exports !== 'object') // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = '__esModule' in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + ' %exports% ' + key);
-    }
-}
-
-},{"react-refresh/runtime":"13VwG"}],"aP2YV":[function(require,module,exports) {
+},{"react":"6TuXu","react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q"}],"aP2YV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8dd4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -32403,7 +32433,16 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "RegistrationView", ()=>RegistrationView
-);
+) // RegistrationView.propTypes = {
+ //   register: PropTypes.shape({
+ //     Name: PropTypes.string.isRequired,
+ //     Username: PropTypes.string.isRequired,
+ //     Password: PropTypes.string.isRequired,
+ //     Email: PropTypes.string.isRequired,
+ //   }).isRequired,
+ //   onRegistration: PropTypes.func.isRequired,
+ // };
+;
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -32425,20 +32464,12 @@ function RegistrationView(props) {
     const [email, setEmail] = _react.useState("");
     //useState hook.. array instead of all seperate like Login View.. why???
     const [values, setValues] = _react.useState({
-        nameErr: "",
         usernameErr: "",
         password: "",
         emailErr: ""
     });
     const validate = ()=>{
         let isReq = true;
-        if (name) {
-            setValues({
-                ...values,
-                nameErr: "Name is required"
-            });
-            isReq = false;
-        }
         if (!username) {
             setValues({
                 ...values,
@@ -32484,7 +32515,6 @@ function RegistrationView(props) {
         e.preventDefault();
         const isReq = validate();
         if (isReq) _axiosDefault.default.post("https://edieflixdb.herokuapp.com/users", {
-            Name: name,
             Username: username,
             Password: password,
             Email: email
@@ -32499,82 +32529,46 @@ function RegistrationView(props) {
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
+        className: "registration-form",
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 82
+            lineNumber: 76
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default.Group, {
                 className: "mb-3",
-                controlId: "formName",
-                __source: {
-                    fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 83
-                },
-                __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
-                        __source: {
-                            fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 84
-                        },
-                        __self: this,
-                        children: "Name "
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
-                        type: "text",
-                        value: name,
-                        onChange: (e)=>setName(e.target.value)
-                        ,
-                        __source: {
-                            fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 85
-                        },
-                        __self: this
-                    }),
-                    values.nameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                        __source: {
-                            fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 90
-                        },
-                        __self: this,
-                        children: values.nameErr
-                    })
-                ]
-            }),
-            /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default.Group, {
-                className: "mb-3",
                 controlId: "formUsername",
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 93
+                    lineNumber: 77
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 94
+                            lineNumber: 78
                         },
                         __self: this,
                         children: "Username "
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
                         type: "text",
+                        placeholder: "2 character minimum",
                         value: username,
                         onChange: (e)=>setUsername(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 95
+                            lineNumber: 79
                         },
                         __self: this
                     }),
                     values.usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 100
+                            lineNumber: 85
                         },
                         __self: this,
                         children: values.usernameErr
@@ -32586,33 +32580,34 @@ function RegistrationView(props) {
                 controlId: "formPassword",
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 103
+                    lineNumber: 88
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 104
+                            lineNumber: 89
                         },
                         __self: this,
                         children: "Password "
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
                         type: "password",
+                        placeholder: "4 chracter minimum",
                         value: password,
                         onChange: (e)=>setPassword(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 105
+                            lineNumber: 90
                         },
                         __self: this
                     }),
                     values.passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 110
+                            lineNumber: 96
                         },
                         __self: this,
                         children: values.passwordErr
@@ -32624,14 +32619,14 @@ function RegistrationView(props) {
                 controlId: "formEmail",
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 113
+                    lineNumber: 99
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 114
+                            lineNumber: 100
                         },
                         __self: this,
                         children: "Email: "
@@ -32644,14 +32639,14 @@ function RegistrationView(props) {
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 115
+                            lineNumber: 101
                         },
                         __self: this
                     }),
                     values.emailErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 121
+                            lineNumber: 107
                         },
                         __self: this,
                         children: values.emailErr
@@ -32664,7 +32659,7 @@ function RegistrationView(props) {
                 onClick: handleSubmit,
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 124
+                    lineNumber: 110
                 },
                 __self: this,
                 children: "Submit"
@@ -32672,23 +32667,23 @@ function RegistrationView(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 127
+                    lineNumber: 113
                 },
                 __self: this
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 128
+                    lineNumber: 114
                 },
                 __self: this,
                 children: [
-                    "Already registered ",
+                    "Already registered? ",
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                         to: "/",
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 129
+                            lineNumber: 115
                         },
                         __self: this,
                         children: "sign in"
@@ -32699,17 +32694,8 @@ function RegistrationView(props) {
         ]
     }));
 }
-_s(RegistrationView, "2dNticgY33h+pVC/01vLhtmL1mw=");
+_s(RegistrationView, "3PyTkJwmoEWyl4JzR9R2/uJIYyY=");
 _c = RegistrationView;
-RegistrationView.propTypes = {
-    register: _propTypesDefault.default.shape({
-        Name: _propTypesDefault.default.string.isRequired,
-        Username: _propTypesDefault.default.string.isRequired,
-        Password: _propTypesDefault.default.string.isRequired,
-        Email: _propTypesDefault.default.string.isRequired
-    }).isRequired,
-    onRegistration: _propTypesDefault.default.func.isRequired
-};
 var _c;
 $RefreshReg$(_c, "RegistrationView");
 
@@ -43911,6 +43897,12 @@ class MovieCard extends _reactDefault.default.Component {
         }));
     }
 }
+MovieCard.propTypes = {
+    movie: _propTypesDefault.default.shape({
+        Title: _propTypesDefault.default.string
+    }).isRequired,
+    onMovieClick: _propTypesDefault.default.func.isRequired
+};
 
   $parcel$ReactRefreshHelpers$4249.postlude(module);
 } finally {
@@ -43937,7 +43929,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 class MovieView extends _reactDefault.default.Component {
     render() {
-        //why does passing onBackClick as an argument here execute the back button?
+        // why does passing onBackClick as an argument here execute the back button?
         const { movie , onBackClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
             className: "movie-view",
@@ -44034,14 +44026,14 @@ class MovieView extends _reactDefault.default.Component {
                     to: `/directors/${movie.Director.Name}`,
                     __source: {
                         fileName: "src/components/movie-view/view-movie.jsx",
-                        lineNumber: 31
+                        lineNumber: 33
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(Button, {
                         variant: "link",
                         __source: {
                             fileName: "src/components/movie-view/view-movie.jsx",
-                            lineNumber: 32
+                            lineNumber: 34
                         },
                         __self: this,
                         children: "Director"
@@ -44051,14 +44043,14 @@ class MovieView extends _reactDefault.default.Component {
                     to: `/genres/${movie.Genre.Name}`,
                     __source: {
                         fileName: "src/components/movie-view/view-movie.jsx",
-                        lineNumber: 35
+                        lineNumber: 37
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(Button, {
                         variant: "link",
                         __source: {
                             fileName: "src/components/movie-view/view-movie.jsx",
-                            lineNumber: 36
+                            lineNumber: 38
                         },
                         __self: this,
                         children: "Genre"

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
+import { RegistrationView } from "../registration-view/registration-view";
 import axios from "axios";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   //declare hook for each input
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
@@ -33,20 +36,25 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Send a request to the server for authentication */
-    axios
-      .post("https://edieflixdb.herokuapp.com/login", {
-        Username: username,
-        Password: password,
-      })
-      .then((response) => {
-        const data = response.data;
-        /* then call props.onLoggedIn(username) */
-        props.onLoggedIn(data);
-      })
-      .catch((e) => {
-        console.log("no such user");
-      });
+    const isReq = validate();
+    if (isReq) {
+      /* Send a request to the server for authentication */
+      axios
+        .post("https://edieflixdb.herokuapp.com/login", {
+          username: username,
+          password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          /* then call props.onLoggedIn(username) */
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          alert("No such user, register!");
+          window.open("/register", "_self");
+          console.log(e);
+        });
+    }
   };
 
   return (
@@ -60,7 +68,6 @@ export function LoginView(props) {
         {/* code added here to display validation error */}
         {usernameErr && <p>{usernameErr}</p>}
       </Form.Group>
-
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
@@ -76,3 +83,7 @@ export function LoginView(props) {
     </Form>
   );
 }
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
+};

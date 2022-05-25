@@ -4,7 +4,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 //BrowserRouter implements states based routing, if you want hash-based, replace with HashRouter
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Redirect,
+} from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -31,16 +36,16 @@ export class MainView extends React.Component {
       });
       this.getMovies(accessToken);
     }
-    axios
-      .get("https://edieflixdb.herokuapp.com/movies")
-      .then((response) => {
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get("https://edieflixdb.herokuapp.com/movies")
+    //   .then((response) => {
+    //     this.setState({
+    //       movies: response.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -51,13 +56,10 @@ export class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
+    setUser(authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
-    this.getMovies(authData.token);
+    setLoading(false);
   }
 
   onLoggedOut() {
@@ -86,7 +88,7 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, user } = this.state;
-
+    // when i remove this my code breaks
     if (!user)
       return (
         <Row>
@@ -95,38 +97,52 @@ export class MainView extends React.Component {
           </Col>
         </Row>
       );
-
     if (movies.length === 0) return <div className="main-view" />;
-    return (
-      <Router>
-        <Row className="main-view justify-content-md-center">
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return movies.map((m) => (
-                <Col md={3} key={m._id}>
-                  <MovieCard movie={m} />
-                </Col>
-              ));
-            }}
-          />
-          <Route
-            //to display single movie view- we have fixed fragment above, to prevent too many matching URLs
-            path="/movies/:movieId"
-            render={({ match }) => {
+
+    <Router>
+      <Row className="main-view justify-content-md-center">
+        <Route
+          exact
+          path="/"
+          render={() => {
+            if (!user)
               return (
-                <Col md={8}>
-                  <MovieView
-                    movie={movies.find((m) => m._id === match.params.movieId)}
-                  />
+                <Col>
+                  <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
                 </Col>
               );
-            }}
-          />
-        </Row>
-      </Router>
-    );
+            return movies.map((m) => (
+              <Col md={3} key={m._id}>
+                <MovieCard movie={m} />
+              </Col>
+            ));
+          }}
+        />
+        <Route
+          path="/register"
+          render={() => {
+            if (user) return <Redirect to="/" />;
+            return;
+            <Col>
+              <RegistrationView />
+            </Col>;
+          }}
+        />
+        <Route
+          //to display single movie view- we have fixed fragment above, to prevent too many matching URLs
+          path="/movies/:movieId"
+          render={({ match }) => {
+            return (
+              <Col md={8}>
+                <MovieView
+                  movie={movies.find((m) => m._id === match.params.movieId)}
+                />
+              </Col>
+            );
+          }}
+        />
+      </Row>
+    </Router>;
   }
 }
 // return (

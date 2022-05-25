@@ -12,7 +12,6 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState("");
   //useState hook.. array instead of all seperate like Login View.. why???
   const [values, setValues] = useState({
-    nameErr: "",
     usernameErr: "",
     password: "",
     emailErr: "",
@@ -20,10 +19,6 @@ export function RegistrationView(props) {
 
   const validate = () => {
     let isReq = true;
-    if (name) {
-      setValues({ ...values, nameErr: "Name is required" });
-      isReq = false;
-    }
     if (!username) {
       setValues({ ...values, usernameErr: "Username is required" });
       isReq = false;
@@ -60,7 +55,6 @@ export function RegistrationView(props) {
     if (isReq) {
       axios
         .post("https://edieflixdb.herokuapp.com/users", {
-          Name: name,
           Username: username,
           Password: password,
           Email: email,
@@ -79,21 +73,12 @@ export function RegistrationView(props) {
   };
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formName">
-        <Form.Label>Name </Form.Label>
-        <Form.Control
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        {values.nameErr && <p>{values.nameErr}</p>}
-      </Form.Group>
-
+    <Form className="registration-form">
       <Form.Group className="mb-3" controlId="formUsername">
         <Form.Label>Username </Form.Label>
         <Form.Control
           type="text"
+          placeholder="2 character minimum"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -104,6 +89,7 @@ export function RegistrationView(props) {
         <Form.Label>Password </Form.Label>
         <Form.Control
           type="password"
+          placeholder="4 chracter minimum"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -126,18 +112,18 @@ export function RegistrationView(props) {
       </Button>
       <p></p>
       <p>
-        Already registered <Link to={"/"}>sign in</Link> here
+        Already registered? <Link to={"/"}>sign in</Link> here
       </p>
     </Form>
   );
 }
 
-RegistrationView.propTypes = {
-  register: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-  }).isRequired,
-  onRegistration: PropTypes.func.isRequired,
-};
+// RegistrationView.propTypes = {
+//   register: PropTypes.shape({
+//     Name: PropTypes.string.isRequired,
+//     Username: PropTypes.string.isRequired,
+//     Password: PropTypes.string.isRequired,
+//     Email: PropTypes.string.isRequired,
+//   }).isRequired,
+//   onRegistration: PropTypes.func.isRequired,
+// };
