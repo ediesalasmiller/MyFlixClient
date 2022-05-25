@@ -14,6 +14,7 @@ export function LoginView(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
 
+  // validate user inputs
   const validate = () => {
     let isReq = true;
     if (!username) {
@@ -26,8 +27,8 @@ export function LoginView(props) {
     if (!password) {
       setPasswordErr("Password Required");
       isReq = false;
-    } else if (password.length < 4) {
-      setPassword("Password must be 4 characters long");
+    } else if (password.length < 6) {
+      setPassword("Password must be 6 characters long");
       isReq = false;
     }
 
@@ -41,18 +42,16 @@ export function LoginView(props) {
       /* Send a request to the server for authentication */
       axios
         .post("https://edieflixdb.herokuapp.com/login", {
-          username: username,
-          password: password,
+          Username: username,
+          Password: password,
         })
         .then((response) => {
           const data = response.data;
-          /* then call props.onLoggedIn(username) */
           props.onLoggedIn(data);
         })
         .catch((e) => {
           alert("No such user, register!");
-          window.open("/register", "_self");
-          console.log(e);
+          // window.open("/register", "_self");
         });
     }
   };
@@ -84,6 +83,6 @@ export function LoginView(props) {
   );
 }
 
-LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
-};
+// LoginView.propTypes = {
+//   onLoggedIn: PropTypes.func.isRequired,
+// };
