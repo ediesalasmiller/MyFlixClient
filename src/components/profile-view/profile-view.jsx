@@ -13,6 +13,10 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
   });
 }
 
+const favoriteMovieList = movies.filter((movies) {
+  
+})
+
 return (
   <div>
     <UserInfo name={user.Username} email={user.Email} />

@@ -22,10 +22,10 @@ export function RegistrationView(props) {
     if (!username) {
       setValues({ ...values, usernameErr: "Username is required" });
       isReq = false;
-    } else if (username.length < 4) {
+    } else if (username.length < 5) {
       setValues({
         ...values,
-        usernameErr: "Username must be 4 characters long",
+        usernameErr: "Username must be 5 characters long",
       });
       isReq = false;
     }
@@ -89,7 +89,7 @@ export function RegistrationView(props) {
         <Form.Label>Password </Form.Label>
         <Form.Control
           type="password"
-          placeholder="4 chracter minimum"
+          placeholder="4 character minimum"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
