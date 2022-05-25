@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-
 export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,10 +22,10 @@ export function RegistrationView(props) {
     if (!username) {
       setValues({ ...values, usernameErr: "Username is required" });
       isReq = false;
-    } else if (username.length < 4) {
+    } else if (username.length < 5) {
       setValues({
         ...values,
-        usernameErr: "Username must be 4 characters long",
+        usernameErr: "Username must be 5 characters long",
       });
       isReq = false;
     }

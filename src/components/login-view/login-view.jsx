@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { RegistrationView } from "../registration-view/registration-view";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -42,14 +43,11 @@ export function LoginView(props) {
       /* Send a request to the server for authentication */
       axios
         .post("https://edieflixdb.herokuapp.com/login", {
-          Username: username,
-          Password: password,
+          username: username,
+          username: password,
         })
         .then((response) => {
           const data = response.data;
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          props.setUser(data.token, data.user);
           props.onLoggedIn(data);
         })
         .catch((e) => {
@@ -60,39 +58,41 @@ export function LoginView(props) {
   };
 
   return (
-    <Form className="login-form">
-      <Form.Group className="mb-3" controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {/* code added here to display validation error */}
-        {usernameErr && <p>{usernameErr}</p>}
-      </Form.Group>
+    <Container>
+      <Form className="login-form">
+        <Form.Group className="mb-3" controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          {/* code added here to display validation error */}
+          {usernameErr && <p>{usernameErr}</p>}
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {/* code added here to display validation error */}
-        {passwordErr && <p>{passwordErr}</p>}
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* code added here to display validation error */}
+          {passwordErr && <p>{passwordErr}</p>}
+        </Form.Group>
 
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-        Submit
-      </Button>
-      <p></p>
-      <p>
-        Need to Register? <Link to={"/register"}>Register</Link> here
-      </p>
-    </Form>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
+        <p></p>
+        <p>
+          Need to Register? <Link to={"/register"}>Register</Link> here
+        </p>
+      </Form>
+    </Container>
   );
 }
 
