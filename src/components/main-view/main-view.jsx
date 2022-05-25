@@ -28,6 +28,22 @@ export class MainView extends React.Component {
     };
   }
 
+  getMovies(token) {
+    axios
+      .get("https://edieflixdb.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
@@ -48,18 +64,18 @@ export class MainView extends React.Component {
     //   });
   }
 
-  setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie,
-    });
-  }
+  // setSelectedMovie(newSelectedMovie) {
+  //   this.setState({
+  //     selectedMovie: newSelectedMovie,
+  //   });
+  // }
 
   onLoggedIn(authData) {
     console.log(authData);
     setUser(authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
-    setLoading(false);
+    this.getMovies(authData.token);
   }
 
   onLoggedOut() {
@@ -68,22 +84,6 @@ export class MainView extends React.Component {
     this.setState({
       user: null,
     });
-  }
-
-  getMovies(token) {
-    axios
-      .get("https://edieflixdb.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   render() {

@@ -25419,6 +25419,20 @@ class MainView extends _reactDefault.default.Component {
             user: null
         };
     }
+    getMovies(token) {
+        _axiosDefault.default.get("https://edieflixdb.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            // Assign the result to the state
+            this.setState({
+                movies: response.data
+            });
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
         if (accessToken !== null) {
@@ -25438,37 +25452,23 @@ class MainView extends _reactDefault.default.Component {
     //     console.log(error);
     //   });
     }
-    setSelectedMovie(newSelectedMovie) {
-        this.setState({
-            selectedMovie: newSelectedMovie
-        });
-    }
+    // setSelectedMovie(newSelectedMovie) {
+    //   this.setState({
+    //     selectedMovie: newSelectedMovie,
+    //   });
+    // }
     onLoggedIn(authData) {
         console.log(authData);
         setUser(authData.user.Username);
         localStorage.setItem("token", authData.token);
         localStorage.setItem("user", authData.user.Username);
-        setLoading(false);
+        this.getMovies(authData.token);
     }
     onLoggedOut() {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         this.setState({
             user: null
-        });
-    }
-    getMovies(token) {
-        _axiosDefault.default.get("https://edieflixdb.herokuapp.com/movies", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            // Assign the result to the state
-            this.setState({
-                movies: response.data
-            });
-        }).catch(function(error) {
-            console.log(error);
         });
     }
     render() {
@@ -30685,7 +30685,10 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView
-);
+) // LoginView.propTypes = {
+ //   onLoggedIn: PropTypes.func.isRequired,
+ // };
+;
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -30706,6 +30709,7 @@ function LoginView(props) {
     //declare hook for each input
     const [usernameErr, setUsernameErr] = _react.useState("");
     const [passwordErr, setPasswordErr] = _react.useState("");
+    // validate user inputs
     const validate = ()=>{
         let isReq = true;
         if (!username) {
@@ -30718,8 +30722,8 @@ function LoginView(props) {
         if (!password) {
             setPasswordErr("Password Required");
             isReq = false;
-        } else if (password.length < 4) {
-            setPassword("Password must be 4 characters long");
+        } else if (password.length < 6) {
+            setPassword("Password must be 6 characters long");
             isReq = false;
         }
         return isReq;
@@ -30728,21 +30732,20 @@ function LoginView(props) {
         e.preventDefault();
         const isReq = validate();
         if (isReq) /* Send a request to the server for authentication */ _axiosDefault.default.post("https://edieflixdb.herokuapp.com/login", {
-            username: username,
-            password: password
+            Username: username,
+            Password: password
         }).then((response)=>{
             const data = response.data;
-            /* then call props.onLoggedIn(username) */ props.onLoggedIn(data);
+            props.onLoggedIn(data);
         }).catch((e1)=>{
             alert("No such user, register!");
-            window.open("/register", "_self");
-            console.log(e1);
+        // window.open("/register", "_self");
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 61
+            lineNumber: 60
         },
         __self: this,
         children: [
@@ -30750,14 +30753,14 @@ function LoginView(props) {
                 controlId: "formUsername",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 62
+                    lineNumber: 61
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 63
+                            lineNumber: 62
                         },
                         __self: this,
                         children: "Username:"
@@ -30768,7 +30771,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 64
+                            lineNumber: 63
                         },
                         __self: this
                     }),
@@ -30776,7 +30779,7 @@ function LoginView(props) {
                     usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 69
+                            lineNumber: 68
                         },
                         __self: this,
                         children: usernameErr
@@ -30787,14 +30790,14 @@ function LoginView(props) {
                 controlId: "formPassword",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 71
+                    lineNumber: 70
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 72
+                            lineNumber: 71
                         },
                         __self: this,
                         children: "Password:"
@@ -30805,14 +30808,14 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 73
+                            lineNumber: 72
                         },
                         __self: this
                     }),
                     passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 78
+                            lineNumber: 77
                         },
                         __self: this,
                         children: passwordErr
@@ -30825,7 +30828,7 @@ function LoginView(props) {
                 onClick: handleSubmit,
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 80
+                    lineNumber: 79
                 },
                 __self: this,
                 children: "Submit"
@@ -30835,9 +30838,6 @@ function LoginView(props) {
 }
 _s(LoginView, "8pGqNa6D1L55vC7VE2hBm7jlBGo=");
 _c = LoginView;
-LoginView.propTypes = {
-    onLoggedIn: _propTypesDefault.default.func.isRequired
-};
 var _c;
 $RefreshReg$(_c, "LoginView");
 
@@ -30846,7 +30846,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","axios":"iYoWk","../registration-view/registration-view":"aP2YV","prop-types":"1tgq3"}],"eNA1M":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","axios":"iYoWk","prop-types":"1tgq3","../registration-view/registration-view":"aP2YV"}],"eNA1M":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
