@@ -42,28 +42,28 @@ export class MainView extends React.Component {
       });
   }
 
-  componentDidMount() {
-    this.getMovies();
-  }
   // componentDidMount() {
-  //   let accessToken = localStorage.getItem("token");
-  //   if (accessToken !== null) {
-  //     this.setState({
-  //       user: localStorage.getItem("user"),
-  //     });
-  //     this.getMovies(accessToken);
-  //   }
+  //   this.getMovies();
   // }
-  onLoggedIn() {
-    this.getMovies();
+  componentDidMount() {
+    let accessToken = localStorage.getItem("token");
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem("user"),
+      });
+      this.getMovies(accessToken);
+    }
   }
-  // onLoggedIn(authData) {
-  //   console.log(authData);
-  //   setUser(authData.user.Username);
-  //   localStorage.setItem("token", authData.token);
-  //   localStorage.setItem("user", authData.user.Username);
-  //   this.getMovies(authData.token);
+  // onLoggedIn() {
+  //   this.getMovies();
   // }
+  onLoggedIn(authData) {
+    console.log(authData);
+    setUser(authData.user.Username);
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", authData.user.Username);
+    this.getMovies(authData.token);
+  }
 
   onLoggedOut() {
     localStorage.removeItem("token");
@@ -75,13 +75,6 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, user } = this.state;
-
-    // if (!user) return;
-    // <Row>
-    //   <Col>
-    //     <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-    //   </Col>
-    // </Row>;
 
     return (
       <Router>

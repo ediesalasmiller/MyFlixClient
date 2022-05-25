@@ -25408,28 +25408,28 @@ class MainView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    componentDidMount() {
-        this.getMovies();
-    }
     // componentDidMount() {
-    //   let accessToken = localStorage.getItem("token");
-    //   if (accessToken !== null) {
-    //     this.setState({
-    //       user: localStorage.getItem("user"),
-    //     });
-    //     this.getMovies(accessToken);
-    //   }
+    //   this.getMovies();
     // }
-    onLoggedIn() {
-        this.getMovies();
+    componentDidMount() {
+        let accessToken = localStorage.getItem("token");
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem("user")
+            });
+            this.getMovies(accessToken);
+        }
     }
-    // onLoggedIn(authData) {
-    //   console.log(authData);
-    //   setUser(authData.user.Username);
-    //   localStorage.setItem("token", authData.token);
-    //   localStorage.setItem("user", authData.user.Username);
-    //   this.getMovies(authData.token);
+    // onLoggedIn() {
+    //   this.getMovies();
     // }
+    onLoggedIn(authData) {
+        console.log(authData);
+        setUser(authData.user.Username);
+        localStorage.setItem("token", authData.token);
+        localStorage.setItem("user", authData.user.Username);
+        this.getMovies(authData.token);
+    }
     onLoggedOut() {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
@@ -25439,23 +25439,17 @@ class MainView extends _reactDefault.default.Component {
     }
     render() {
         const { movies , user  } = this.state;
-        // if (!user) return;
-        // <Row>
-        //   <Col>
-        //     <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-        //   </Col>
-        // </Row>;
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 87
+                lineNumber: 80
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                 className: "main-view justify-content-md-center",
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 88
+                    lineNumber: 81
                 },
                 __self: this,
                 children: [
@@ -25481,7 +25475,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 90
+                            lineNumber: 83
                         },
                         __self: this
                     }),
@@ -25498,7 +25492,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 109
+                            lineNumber: 102
                         },
                         __self: this
                     }),
@@ -25515,7 +25509,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 121
+                            lineNumber: 114
                         },
                         __self: this
                     })
