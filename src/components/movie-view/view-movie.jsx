@@ -41,7 +41,7 @@ export class MovieView extends React.Component {
     );
   }
 }
-
+// prop types checking for data validity..  For performance reasons, propTypes is only checked in development mode.
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
