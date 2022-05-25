@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+
 export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -89,7 +90,7 @@ export function RegistrationView(props) {
         <Form.Label>Password </Form.Label>
         <Form.Control
           type="password"
-          placeholder="4 chracter minimum"
+          placeholder="4 character minimum"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

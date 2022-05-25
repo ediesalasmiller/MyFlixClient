@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 import { RegistrationView } from "../registration-view/registration-view";
 import axios from "axios";
 
@@ -47,42 +47,59 @@ export function LoginView(props) {
         })
         .then((response) => {
           const data = response.data;
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          props.setUser(data.token, data.user);
           props.onLoggedIn(data);
         })
         .catch((e) => {
           alert("No such user, register!");
-          // window.open("/register", "_self");
+          window.open("/register", "_self");
         });
     }
   };
 
   return (
-    <Form>
-      <Form.Group controlId="formUsername">
+    <Form className="login-form">
+      <Form.Group className="mb-3" controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
+          placeholder="Enter username"
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />{" "}
+        />
         {/* code added here to display validation error */}
         {usernameErr && <p>{usernameErr}</p>}
       </Form.Group>
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
+
+      <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
+          placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         {/* code added here to display validation error */}
         {passwordErr && <p>{passwordErr}</p>}
       </Form.Group>
+
       <Button variant="primary" type="submit" onClick={handleSubmit}>
         Submit
       </Button>
+      <p></p>
+      <p>
+        Need to Register? <Link to={"/register"}>Register</Link> here
+      </p>
     </Form>
   );
 }
 
-// LoginView.propTypes = {
-//   onLoggedIn: PropTypes.func.isRequired,
-// };
+LoginView.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+  }),
+  onLoggedIn: PropTypes.func.isRequired,
+};
