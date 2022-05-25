@@ -4,7 +4,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 //BrowserRouter implements states based routing, if you want hash-based, replace with HashRouter
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Redirect,
+} from "react-router-dom";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -31,16 +36,16 @@ export class MainView extends React.Component {
       });
       this.getMovies(accessToken);
     }
-    axios
-      .get("https://edieflixdb.herokuapp.com/movies")
-      .then((response) => {
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .get("https://edieflixdb.herokuapp.com/movies")
+    //   .then((response) => {
+    //     this.setState({
+    //       movies: response.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -51,13 +56,10 @@ export class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
+    setUser(authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
-    this.getMovies(authData.token);
+    setLoading(false);
   }
 
   onLoggedOut() {
@@ -87,15 +89,15 @@ export class MainView extends React.Component {
   render() {
     const { movies, user } = this.state;
     // when i remove this my code breaks
-    // if (!user)
-    //   return (
-    //     <Row>
-    //       <Col>
-    //         <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />{" "}
-    //       </Col>
-    //     </Row>
-    //   );
-    // if (movies.length === 0) return <div className="main-view" />;
+    if (!user)
+      return (
+        <Row>
+          <Col>
+            <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />{" "}
+          </Col>
+        </Row>
+      );
+    if (movies.length === 0) return <div className="main-view" />;
 
     <Router>
       <Row className="main-view justify-content-md-center">
@@ -119,11 +121,11 @@ export class MainView extends React.Component {
         <Route
           path="/register"
           render={() => {
-            return (
-              <Col>
-                <RegistrationView />
-              </Col>
-            );
+            if (user) return <Redirect to="/" />;
+            return;
+            <Col>
+              <RegistrationView />
+            </Col>;
           }}
         />
         <Route
