@@ -31960,8 +31960,8 @@ function LoginView(props) {
         e.preventDefault();
         const isReq = validate();
         if (isReq) /* Send a request to the server for authentication */ _axiosDefault.default.post("https://edieflixdb.herokuapp.com/login", {
-            username: username,
-            username: password
+            Username: username,
+            Password: password
         }).then((response)=>{
             const data = response.data;
             props.onLoggedIn(data);
