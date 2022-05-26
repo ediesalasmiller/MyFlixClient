@@ -25454,7 +25454,6 @@ class MainView extends _reactDefault.default.Component {
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
-                        exact: true,
                         path: "/",
                         render: ()=>{
                             if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
@@ -25492,7 +25491,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 102
+                            lineNumber: 101
                         },
                         __self: this
                     }),
@@ -25509,7 +25508,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 114
+                            lineNumber: 113
                         },
                         __self: this
                     })
@@ -31914,7 +31913,14 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView
-);
+) // LoginView.propTypes = {
+ //   user: PropTypes.shape({
+ //     username: PropTypes.string.isRequired,
+ //     password: PropTypes.string.isRequired,
+ //   }),
+ //   onLoggedIn: PropTypes.func.isRequired,
+ // };
+;
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -31966,21 +31972,22 @@ function LoginView(props) {
             const data = response.data;
             props.onLoggedIn(data);
         }).catch((e1)=>{
-            alert("No such user, register!");
-            window.open("/register", "_self");
+            console.log(error);
+            alert("Invalid user");
+        // window.open("/register", "_self");
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 61
+            lineNumber: 62
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
             className: "login-form",
             __source: {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 62
+                lineNumber: 63
             },
             __self: this,
             children: [
@@ -31989,14 +31996,14 @@ function LoginView(props) {
                     controlId: "formUsername",
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 63
+                        lineNumber: 64
                     },
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 64
+                                lineNumber: 65
                             },
                             __self: this,
                             children: "Username:"
@@ -32009,14 +32016,14 @@ function LoginView(props) {
                             ,
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 65
+                                lineNumber: 66
                             },
                             __self: this
                         }),
                         usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 72
+                                lineNumber: 73
                             },
                             __self: this,
                             children: usernameErr
@@ -32028,14 +32035,14 @@ function LoginView(props) {
                     controlId: "formPassword",
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 75
+                        lineNumber: 76
                     },
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 76
+                                lineNumber: 77
                             },
                             __self: this,
                             children: "Password"
@@ -32048,14 +32055,14 @@ function LoginView(props) {
                             ,
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 77
+                                lineNumber: 78
                             },
                             __self: this
                         }),
                         passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 84
+                                lineNumber: 85
                             },
                             __self: this,
                             children: passwordErr
@@ -32068,7 +32075,7 @@ function LoginView(props) {
                     onClick: handleSubmit,
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 87
+                        lineNumber: 88
                     },
                     __self: this,
                     children: "Submit"
@@ -32076,14 +32083,14 @@ function LoginView(props) {
                 /*#__PURE__*/ _jsxRuntime.jsx("p", {
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 90
+                        lineNumber: 91
                     },
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 91
+                        lineNumber: 92
                     },
                     __self: this,
                     children: [
@@ -32092,7 +32099,7 @@ function LoginView(props) {
                             to: "/register",
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 92
+                                lineNumber: 93
                             },
                             __self: this,
                             children: "Register"
@@ -32106,13 +32113,6 @@ function LoginView(props) {
 }
 _s(LoginView, "8pGqNa6D1L55vC7VE2hBm7jlBGo=");
 _c = LoginView;
-LoginView.propTypes = {
-    user: _propTypesDefault.default.shape({
-        username: _propTypesDefault.default.string.isRequired,
-        password: _propTypesDefault.default.string.isRequired
-    }),
-    onLoggedIn: _propTypesDefault.default.func.isRequired
-};
 var _c;
 $RefreshReg$(_c, "LoginView");
 

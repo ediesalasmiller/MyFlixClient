@@ -51,8 +51,9 @@ export function LoginView(props) {
           props.onLoggedIn(data);
         })
         .catch((e) => {
-          alert("No such user, register!");
-          window.open("/register", "_self");
+          console.log(error);
+          alert("Invalid user");
+          // window.open("/register", "_self");
         });
     }
   };
@@ -96,10 +97,10 @@ export function LoginView(props) {
   );
 }
 
-LoginView.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  }),
-  onLoggedIn: PropTypes.func.isRequired,
-};
+// LoginView.propTypes = {
+//   user: PropTypes.shape({
+//     username: PropTypes.string.isRequired,
+//     password: PropTypes.string.isRequired,
+//   }),
+//   onLoggedIn: PropTypes.func.isRequired,
+// };
