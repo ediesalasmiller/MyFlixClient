@@ -43,8 +43,8 @@ export function LoginView(props) {
       /* Send a request to the server for authentication */
       axios
         .post("https://edieflixdb.herokuapp.com/login", {
-          username: username,
-          username: password,
+          Username: username,
+          Password: password,
         })
         .then((response) => {
           const data = response.data;
