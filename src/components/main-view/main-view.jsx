@@ -35,7 +35,9 @@ export class MainView extends React.Component {
       })
       .then((response) => {
         // Assign the result to the state
-        this.props.setMovies(response.data);
+        this.setState({
+          movies: response.data,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -59,7 +61,10 @@ export class MainView extends React.Component {
   // }
   onLoggedIn(authData) {
     console.log(authData);
-    setUser(authData.user.Username);
+    this.setState({
+      user: authData.user.Username,
+    });
+
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);

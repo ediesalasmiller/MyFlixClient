@@ -25403,7 +25403,9 @@ class MainView extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             // Assign the result to the state
-            this.props.setMovies(response.data);
+            this.setState({
+                movies: response.data
+            });
         }).catch(function(error) {
             console.log(error);
         });
@@ -25425,7 +25427,9 @@ class MainView extends _reactDefault.default.Component {
     // }
     onLoggedIn(authData) {
         console.log(authData);
-        setUser(authData.user.Username);
+        this.setState({
+            user: authData.user.Username
+        });
         localStorage.setItem("token", authData.token);
         localStorage.setItem("user", authData.user.Username);
         this.getMovies(authData.token);
@@ -25442,14 +25446,14 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 80
+                lineNumber: 85
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                 className: "main-view justify-content-md-center",
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 81
+                    lineNumber: 86
                 },
                 __self: this,
                 children: [
@@ -25474,7 +25478,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 83
+                            lineNumber: 88
                         },
                         __self: this
                     }),
@@ -25491,7 +25495,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 101
+                            lineNumber: 106
                         },
                         __self: this
                     }),
@@ -25508,7 +25512,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 113
+                            lineNumber: 118
                         },
                         __self: this
                     })
@@ -31971,8 +31975,8 @@ function LoginView(props) {
         }).then((response)=>{
             const data = response.data;
             props.onLoggedIn(data);
-        }).catch((e1)=>{
-            console.log(error);
+        }).catch((err)=>{
+            console.log(err);
             alert("Invalid user");
         // window.open("/register", "_self");
         });
@@ -44380,8 +44384,7 @@ class MovieCard extends _reactDefault.default.Component {
 MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
         Title: _propTypesDefault.default.string
-    }).isRequired,
-    onMovieClick: _propTypesDefault.default.func.isRequired
+    }).isRequired
 };
 
   $parcel$ReactRefreshHelpers$4249.postlude(module);

@@ -50,8 +50,8 @@ export function LoginView(props) {
           const data = response.data;
           props.onLoggedIn(data);
         })
-        .catch((e) => {
-          console.log(error);
+        .catch((err) => {
+          console.log(err);
           alert("Invalid user");
           // window.open("/register", "_self");
         });
