@@ -1,21 +1,19 @@
 import React from "react";
 import axios from "axios";
-
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
-//BrowserRouter implements states based routing, if you want hash-based, replace with HashRouter
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Redirect,
 } from "react-router-dom";
-
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/view-movie";
+import { DirectorView } from "../director-view/director-view";
+import { ProfileView } from "../profile-view/profile-view";
 
 //MainView state
 export class MainView extends React.Component {
@@ -114,7 +112,21 @@ export class MainView extends React.Component {
               );
             }}
           />
-          {/* ROUTE TO FINDING MOVIE VIEW */}
+
+          {/* Route to movie Cards */}
+          <Route
+            exact
+            path="/movies"
+            render={() => {
+              return movies.map((m) => (
+                <Col md={3} key={m._id}>
+                  <MovieCard movie={m} />
+                </Col>
+              ));
+            }}
+          />
+
+          {/* ROUTE TO FINDING MOVIE VIEW  */}
           <Route
             path="/movies/:movieId"
             render={({ match }) => {
@@ -122,31 +134,49 @@ export class MainView extends React.Component {
                 <Col md={8}>
                   <MovieView
                     movie={movies.find((m) => m._id === match.params.movieId)}
+                    onBackClick={() => history.goBack()}
                   />
                 </Col>
               );
             }}
           />
-          {/* <Route exact path="/genres/:name" render= genre view/>
-    <Route exact path="/directors/:name"" render=director view/> */}
+          {/* Route to directors   */}
+          {/* <Route
+            exact
+            path="/directors/:name"
+            render={({ match, history }) => {
+              if (movies.length === 0) return <div className="main-view" />;
+              return (
+                <Col md={8}>
+                  {" "}
+                  <DirectorView
+                    director={
+                      movies.find((m) => m.Director.Name === match.params.name)
+                        .Director
+                    }
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          /> */}
+          {/* Route to profile view */}
+          {/* <Route
+            path={`/users/${user}`}
+            render={({ history }) => {
+              if (!user) return <Redirect to="/" />;
+              return (
+                <Col>
+                  <ProfileView
+                    user={user}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          /> */}
         </Row>
       </Router>
     );
   }
 }
-
-// director view route <Route
-//   path="/directors/:name"
-//   render={({ match }) => {
-//     if (movies.length === 0) return <div className="main-view" />;
-//     return (
-//       <Col md={8}>
-//         <DirectorView
-//           director={
-//             movies.find((m) => m.Director.Name === match.params.name).Director
-//           }
-//         />
-//       </Col>
-//     );
-//   }}
-// />;
