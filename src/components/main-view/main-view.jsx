@@ -146,20 +146,21 @@ export class MainView extends React.Component {
           <Route
             exact
             path="/directors/:name"
-            render={({ match }) => {
+            render={({ match, history }) => {
               if (movies.length === 0) return <div className="main-view" />;
               return (
                 <DirectorView
-                  director={movies.find(
-                    (m) => m.Director.Name === match.params.name
-                  )}
+                  director={
+                    movies.find((m) => m.Director.Name === match.params.name)
+                      .Director 
+                  }
                   onBackClick={() => history.goBack()}
                 />
               );
             }}
           />
           {/* Route to profile view */}
-          {/* <Route
+          <Route
             path={`/users/${user}`}
             render={({ history }) => {
               if (!user) return <Redirect to="/" />;
@@ -172,7 +173,7 @@ export class MainView extends React.Component {
                 </Col>
               );
             }}
-          /> */}
+          />
         </Row>
       </Router>
     );

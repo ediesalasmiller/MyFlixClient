@@ -30,7 +30,12 @@ export function NavigationBar({ user }) {
 
   //unordered list
   return (
-    <Navbar fixed="top" bg="dark" variant="dark">
+    <Navbar
+      style={{ marginBottom: "40" }}
+      sticky="top"
+      bg="dark"
+      variant="dark"
+    >
       <Container>
         <Navbar.Brand href="/">My Flix</Navbar.Brand>
         <Nav className="me-auto">

@@ -1,7 +1,7 @@
 import React from "React";
 import { Link } from "react-router-dom";
 
-function FavoriteMovies({ favoriteMovieList }) {
+export function FavoriteMovies({ favoriteMovieList }) {
   return (
     <div>
       <h2>Favorite Movies List</h2>
@@ -24,4 +24,3 @@ function FavoriteMovies({ favoriteMovieList }) {
     </div>
   );
 }
-export default FavoriteMovies;

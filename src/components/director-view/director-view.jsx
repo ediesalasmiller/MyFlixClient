@@ -7,11 +7,20 @@ import { Link } from "react-router-dom";
 
 export class DirectorView extends React.Component {
   render() {
-    const { movie, onBackClick } = this.props;
+    const { director, onBackClick } = this.props;
     return (
       <Container className="director-view">
-        <Row className="director-name">
-          <Col className="value">{movie.Director.Name}</Col>
+        <Row className="mt-3">
+          <Col className="label">Director: </Col>
+          <Col className="value">{director.Name}</Col>
+        </Row>
+        <Row className="mt-3">
+          <Col className="label">about </Col>
+          <Col className="value">{director.Bio}</Col>
+        </Row>
+        <Row className="mt-3">
+          <Col className="label">birthday </Col>
+          <Col className="value">{director.Birth}</Col>
         </Row>
 
         <Button
