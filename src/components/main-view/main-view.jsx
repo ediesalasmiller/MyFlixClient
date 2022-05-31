@@ -14,6 +14,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/view-movie";
 import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { NavigationBar } from "../nav-bar/navbar";
 
 //MainView state
 export class MainView extends React.Component {
@@ -81,6 +82,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
+        <NavigationBar />
         <Row className="main-view justify-content-md-center">
           {/* ROUTE TO MAIN VIEW MOVIES MAP */}
           <Route

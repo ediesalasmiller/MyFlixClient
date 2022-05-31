@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 
 //export function for main-view user
-export function Navigation({ user }) {
+export function NavigationBar({ user }) {
   //clearing the local storage and going to login page onLoggedOut
   const onLoggedOut = () => {
     localStorage.clear();
@@ -27,15 +27,19 @@ export function Navigation({ user }) {
       return false;
     }
   };
-}
-//unordered list
-return (
-  <Navbar bg="dark" variant="dark">
-    <Container>
-      <Navbar.Brand href="/">My Flix</Navbar.Brand>
-      <Nav className="me-auto">
-        {isAuth() && <Nav.Link href={`/users/$user`}>{user}</Nav.Link>}
+
+  //unordered list
+  return (
+    <Navbar fixed="top" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="/">My Flix</Navbar.Brand>
+        <Nav className="me-auto">
+          {/* {isAuth() && <Nav.Link href={`/users/$user`}>{user}</Nav.Link>}
         {isAuth() && (
+         
+        )}
+        {!isAuth() && <Nav.Link href="/">Sign in</Nav.Link>}
+        {!isAuth() && <Nav.Link href="/register">Sign up</Nav.Link>} */}
           <Button
             variant="link"
             onClick={() => {
@@ -44,10 +48,8 @@ return (
           >
             Logout
           </Button>
-        )}
-        {!isAuth() && <Nav.Link href="/">Sign in</Nav.Link>}
-        {!isAuth() && <Nav.Link href="/register">Sign up</Nav.Link>}
-      </Nav>
-    </Container>
-  </Navbar>
-);
+        </Nav>
+      </Container>
+    </Navbar>
+  );
+}
