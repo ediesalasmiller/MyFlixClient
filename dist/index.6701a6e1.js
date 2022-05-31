@@ -25505,7 +25505,7 @@ class MainView extends _reactDefault.default.Component {
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                         path: "/movies/:movieId",
-                        render: ({ match  })=>{
+                        render: ({ match , history  })=>{
                             return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                 md: 8,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_viewMovie.MovieView, {
@@ -25518,6 +25518,25 @@ class MainView extends _reactDefault.default.Component {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 130
+                        },
+                        __self: this
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                        exact: true,
+                        path: "/directors/:name",
+                        render: ({ match  })=>{
+                            if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+                                className: "main-view"
+                            }));
+                            return(/*#__PURE__*/ _jsxRuntime.jsx(_directorView.DirectorView, {
+                                director: movies.find((m)=>m.Director.Name === match.params.name
+                                ),
+                                onBackClick: ()=>history.goBack()
+                            }));
+                        },
+                        __source: {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 144
                         },
                         __self: this
                     })
@@ -44539,8 +44558,76 @@ MovieView.propTypes = {
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-router-dom":"cpyQW","react-bootstrap":"h2YVd"}],"ck15y":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f8cc = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f8cc.prelude(module);
 
-},{}],"2E7Aw":[function(require,module,exports) {
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DirectorView", ()=>DirectorView
+);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+class DirectorView extends _reactDefault.default.Component {
+    render() {
+        const { movie , onBackClick  } = this.props;
+        return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
+            className: "director-view",
+            __source: {
+                fileName: "src/components/director-view/director-view.jsx",
+                lineNumber: 12
+            },
+            __self: this,
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                    className: "director-name",
+                    __source: {
+                        fileName: "src/components/director-view/director-view.jsx",
+                        lineNumber: 13
+                    },
+                    __self: this,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                        className: "value",
+                        __source: {
+                            fileName: "src/components/director-view/director-view.jsx",
+                            lineNumber: 14
+                        },
+                        __self: this,
+                        children: movie.Director.Name
+                    })
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    onClick: ()=>{
+                        onBackClick(null);
+                    },
+                    variant: "warning",
+                    __source: {
+                        fileName: "src/components/director-view/director-view.jsx",
+                        lineNumber: 17
+                    },
+                    __self: this,
+                    children: "Back"
+                })
+            ]
+        }));
+    }
+}
+
+  $parcel$ReactRefreshHelpers$f8cc.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-bootstrap":"h2YVd"}],"2E7Aw":[function(require,module,exports) {
 
 },{}],"jUTZ8":[function() {},{}]},["E2fRO","c8aYv","dLPEP"], "dLPEP", "parcelRequire6ba1")
 

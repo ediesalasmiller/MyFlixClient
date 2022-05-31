@@ -129,7 +129,7 @@ export class MainView extends React.Component {
           {/* ROUTE TO FINDING MOVIE VIEW  */}
           <Route
             path="/movies/:movieId"
-            render={({ match }) => {
+            render={({ match, history }) => {
               return (
                 <Col md={8}>
                   <MovieView
@@ -141,25 +141,21 @@ export class MainView extends React.Component {
             }}
           />
           {/* Route to directors   */}
-          {/* <Route
+          <Route
             exact
             path="/directors/:name"
-            render={({ match, history }) => {
+            render={({ match }) => {
               if (movies.length === 0) return <div className="main-view" />;
               return (
-                <Col md={8}>
-                  {" "}
-                  <DirectorView
-                    director={
-                      movies.find((m) => m.Director.Name === match.params.name)
-                        .Director
-                    }
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
+                <DirectorView
+                  director={movies.find(
+                    (m) => m.Director.Name === match.params.name
+                  )}
+                  onBackClick={() => history.goBack()}
+                />
               );
             }}
-          /> */}
+          />
           {/* Route to profile view */}
           {/* <Route
             path={`/users/${user}`}
