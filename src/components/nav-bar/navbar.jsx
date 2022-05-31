@@ -38,13 +38,13 @@ export function NavigationBar({ user }) {
     >
       <Container>
         <Navbar.Brand href="/">My Flix</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll"></Navbar.Collapse>
         <Nav className="me-auto">
-          {/* {isAuth() && <Nav.Link href={`/users/$user`}>{user}</Nav.Link>}
-        {isAuth() && (
-         
-        )}
-        {!isAuth() && <Nav.Link href="/">Sign in</Nav.Link>}
-        {!isAuth() && <Nav.Link href="/register">Sign up</Nav.Link>} */}
+          <Nav.Link href="/users/${user}">Profile</Nav.Link>
+          <Nav.Link href="/">Sign in</Nav.Link>
+          <Nav.Link href="/register">Sign up</Nav.Link>
+
           <Button
             variant="link"
             onClick={() => {
