@@ -19,7 +19,7 @@ export class DirectorView extends React.Component {
           <Col className="value">{director.Bio}</Col>
         </Row>
         <Row className="mt-3">
-          <Col className="label">birthday </Col>
+          <Col className="label">birth year </Col>
           <Col className="value">{director.Birth}</Col>
         </Row>
 

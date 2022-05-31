@@ -15,6 +15,7 @@ import { MovieView } from "../movie-view/view-movie";
 import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../nav-bar/navbar";
+import { GenreView } from "../genre-view/genre-view";
 
 //MainView state
 export class MainView extends React.Component {
@@ -152,13 +153,31 @@ export class MainView extends React.Component {
                 <DirectorView
                   director={
                     movies.find((m) => m.Director.Name === match.params.name)
-                      .Director 
+                      .Director
                   }
                   onBackClick={() => history.goBack()}
                 />
               );
             }}
           />
+
+          {/* Route to genre   */}
+          <Route
+            exact
+            path="/genres/:name"
+            render={({ match, history }) => {
+              if (movies.length === 0) return <div className="main-view" />;
+              return (
+                <GenreView
+                  genre={
+                    movies.find((m) => m.Genre.Name === match.params.name).Genre
+                  }
+                  onBackClick={() => history.goBack()}
+                />
+              );
+            }}
+          />
+
           {/* Route to profile view */}
           <Route
             path={`/users/${user}`}
