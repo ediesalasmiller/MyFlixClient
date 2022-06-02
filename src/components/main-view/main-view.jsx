@@ -87,6 +87,7 @@ export class MainView extends React.Component {
         <Row className="main-view justify-content-md-center">
           {/* ROUTE TO MAIN VIEW MOVIES MAP */}
           <Route
+            exact
             path="/"
             render={() => {
               if (!user)
@@ -105,6 +106,7 @@ export class MainView extends React.Component {
           />
           {/* ROUTE TO REGISTRATION VIEW*/}
           <Route
+            exact
             path="/register"
             render={() => {
               if (user) return <Redirect to="/" />;
@@ -145,7 +147,6 @@ export class MainView extends React.Component {
           />
           {/* Route to directors   */}
           <Route
-            exact
             path="/directors/:name"
             render={({ match, history }) => {
               if (movies.length === 0) return <div className="main-view" />;
@@ -163,7 +164,6 @@ export class MainView extends React.Component {
 
           {/* Route to genre   */}
           <Route
-            exact
             path="/genres/:name"
             render={({ match, history }) => {
               if (movies.length === 0) return <div className="main-view" />;
@@ -180,16 +180,15 @@ export class MainView extends React.Component {
 
           {/* Route to profile view */}
           <Route
-            path={`/users/${user}`}
-            render={({ history }) => {
-              if (!user) return <Redirect to="/" />;
+            path="/users/${user}"
+            render={({ match, history }) => {
               return (
-                <Col>
-                  <ProfileView
-                    user={user}
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
+                <ProfileView
+                  user={
+                    users.find((m) => m.User.Name === match.params.name).User
+                  }
+                  onBackClick={() => history.goBack()}
+                />
               );
             }}
           />

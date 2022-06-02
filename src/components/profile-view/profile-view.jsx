@@ -3,16 +3,13 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-import { UserInfo } from "./user-info";
 import FavoriteMovies from "./favorite-movies";
 
 export function ProfileView(props) {
-  const [user, setUser] = useState(props.user);
-  const [movies, setMovies] = useState(props.movies);
+  const [user] = useState(props.user);
+  const [movies] = useState(props.movies);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-    const currentUser = localStorage.getItem("user");
+  const currentUser = localStorage.getItem("user");
 
   const getUser = () => {
     axios
