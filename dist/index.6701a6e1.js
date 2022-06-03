@@ -25439,6 +25439,7 @@ class MainView extends _reactDefault.default.Component {
             __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx(_navbar.NavigationBar, {
+                    user: this.state.user,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 86

@@ -83,7 +83,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
-        <NavigationBar />
+        <NavigationBar user={this.state.user} />
         <Row className="main-view justify-content-md-center">
           {/* ROUTE TO MAIN VIEW MOVIES MAP */}
           <Route
