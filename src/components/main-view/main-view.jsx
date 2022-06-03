@@ -180,13 +180,11 @@ export class MainView extends React.Component {
 
           {/* Route to profile view */}
           <Route
-            path="/users/${user}"
+            path="/users/:name"
             render={({ match, history }) => {
               return (
                 <ProfileView
-                  user={
-                    users.find((m) => m.User.Name === match.params.name).User
-                  }
+                  user={this.state.user}
                   onBackClick={() => history.goBack()}
                 />
               );

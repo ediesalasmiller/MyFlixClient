@@ -6,18 +6,20 @@ import Button from "react-bootstrap/Button";
 import FavoriteMovies from "./favorite-movies";
 
 export function ProfileView(props) {
-  const [user] = useState(props.user);
+  const [setUser, user] = useState(null);
   const [movies] = useState(props.movies);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const currentUser = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
 
   const getUser = () => {
     axios
-      .get("https://edieflixdb.herokuapp.com/users/${currentUser}", {
+      .get(`https://edieflixdb.herokuapp.com/users/${currentUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        this.setUser(response.data);
+        console.log(response.data);
+        setUser(response.data);
         setFavoriteMovies(response.data.favoriteMovies);
       })
       .catch((error) => console.error(error));
@@ -52,7 +54,7 @@ export function ProfileView(props) {
         <Col className="label">Username </Col>
         <Col className="value">{user.Username}</Col>
       </Row>
-      <Row className="mt-3">
+      {/* <Row className="mt-3">
         <Col className="label">Email:</Col>
         <Col className="value">{user.Email}</Col>
       </Row>
@@ -65,7 +67,7 @@ export function ProfileView(props) {
           favoriteMovies={favoriteMovies}
           currentUser={currentUser}
         />
-      </Row>
+      </Row> */}
       <Button className="d-block mt-5" variant="warning" onClick={handleDelete}>
         Delete profile?
       </Button>
