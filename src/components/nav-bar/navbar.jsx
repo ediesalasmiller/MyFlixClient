@@ -41,7 +41,7 @@ export function NavigationBar({ user }) {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll"></Navbar.Collapse>
         <Nav className="me-auto">
-          <Nav.Link href="/users/${user}">Profile</Nav.Link>
+          <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
           <Nav.Link href="/">Sign in</Nav.Link>
           <Nav.Link href="/register">Sign up</Nav.Link>
 

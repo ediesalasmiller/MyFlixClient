@@ -45104,7 +45104,7 @@ function NavigationBar({ user  }) {
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            href: "/users/${user}",
+                            href: `/users/${user}`,
                             __source: {
                                 fileName: "src/components/nav-bar/navbar.jsx",
                                 lineNumber: 44
