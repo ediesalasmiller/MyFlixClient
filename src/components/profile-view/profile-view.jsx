@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import FavoriteMovies from "./favorite-movies";
+import Modal from "./favorite-movies";
 
 export function ProfileView(props) {
   const [setUser, user] = useState(null);
@@ -45,6 +45,15 @@ export function ProfileView(props) {
       });
   };
 
+  state = {
+    show: false,
+  };
+  showModal = (e) => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
+
   return (
     <Container id="profile-view">
       <Row>
@@ -68,9 +77,29 @@ export function ProfileView(props) {
           currentUser={currentUser}
         />
       </Row> */}
+      <div className="movie-modal">
+        <Button
+          class="toggle-button"
+          id="centered-toggle-button"
+          onClick={(e) => {
+            this.showModal(e);
+          }}
+        >
+          {" "}
+          Favorite Movies{" "}
+        </Button>
+
+        <Modal onClose={this.showModal} show={this.state.show}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+          deserunt corrupti, ut fugit magni qui quasi nisi amet repellendus non
+          fuga omnis a sed impedit explicabo accusantium nihil doloremque
+          consequuntur.
+        </Modal>
+      </div>
       <Button className="d-block mt-5" variant="warning" onClick={handleDelete}>
         Delete profile?
       </Button>
+      <Modal show={this.state.show} />
     </Container>
   );
 }

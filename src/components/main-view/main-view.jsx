@@ -180,7 +180,7 @@ export class MainView extends React.Component {
 
           {/* Route to profile view */}
           <Route
-            path="/users/:name"
+            path="/users/:Username"
             render={({ match, history }) => {
               return (
                 <ProfileView
