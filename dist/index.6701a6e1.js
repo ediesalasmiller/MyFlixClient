@@ -44758,25 +44758,23 @@ var _formDefault = parcelHelpers.interopDefault(_form);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
-function ProfileView(props) {
+function ProfileView({ movies  }) {
     _s();
     const [setUsername, user] = _react.useState("");
     const [password, setPassword] = _react.useState("");
     const [email, setEmail] = _react.useState("");
     const [favoriteMovies, setFavoriteMovies] = _react.useState([]);
-    const currentUser = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
     //useEffect
     _react.useEffect(()=>{
         getUser();
     }, []);
     //retreive user information
     const getUser = ()=>{
-        let token1 = localStorage.getItem("token");
-        let currentUser1 = localStorage.getItem("user");
-        _axiosDefault.default.get(`https://edieflixdb.herokuapp.com/users/${currentUser1}`, {
+        let token = localStorage.getItem("token");
+        let currentUser = localStorage.getItem("user");
+        _axiosDefault.default.get(`https://edieflixdb.herokuapp.com/users/${currentUser}`, {
             headers: {
-                Authorization: `Bearer ${token1}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             setUsername(response.data.Username);
@@ -44786,15 +44784,15 @@ function ProfileView(props) {
         );
     };
     const updateUser = ()=>{
-        let token1 = localStorage.getItem("token");
-        let currentUser1 = localStorage.getItem("user");
-        _axiosDefault.default.put(`https://edieflixdb.herokuapp.com/users/${user}`, {
+        let token = localStorage.getItem("token");
+        let user1 = localStorage.getItem("user");
+        _axiosDefault.default.put(`https://edieflixdb.herokuapp.com/users/${user1}`, {
             Username: username,
             Email: email,
             Password: password
         }, {
             headers: {
-                Authorization: "Bearer " + token1
+                Authorization: "Bearer " + token
             }
         }).then((response)=>{
             alert("Your profile has been updated");
@@ -44805,14 +44803,14 @@ function ProfileView(props) {
     };
     //delete current user
     const handleDelete = (e)=>{
-        let token1 = localStorage.getItem("token");
-        let currentUser1 = localStorage.getItem("user");
+        let token = localStorage.getItem("token");
+        let user1 = localStorage.getItem("user");
         _axiosDefault.default.delete("https://edieflixdb.herokuapp.com/users/${user}", {
             headers: {
-                Authorization: `Bearer ${token1}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            alert(`The account ${user.Username} has been deleted.`);
+            alert(`The account ${user1.Username} has been deleted.`);
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             window.open("/register", "_self");
@@ -44828,13 +44826,13 @@ function ProfileView(props) {
             className: "justify-content-md-center",
             __source: {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 86
+                lineNumber: 84
             },
             __self: this,
             children: favoriteMovies.length === 0 ? /*#__PURE__*/ _jsxRuntime.jsx("h5", {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 88
+                    lineNumber: 86
                 },
                 __self: this,
                 children: "Add some movies to your list"
@@ -44843,7 +44841,7 @@ function ProfileView(props) {
                     lg: 4,
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 91
+                        lineNumber: 89
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(MovieCard, {
@@ -44851,7 +44849,7 @@ function ProfileView(props) {
                         ),
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 92
+                            lineNumber: 90
                         },
                         __self: this
                     }, `${i}-${movieId}`)
@@ -44859,26 +44857,18 @@ function ProfileView(props) {
             )
         }));
     };
-    state = {
-        show: false
-    };
-    showModal = (e)=>{
-        this.setState({
-            show: !this.state.show
-        });
-    };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
         id: "profile-view",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 114
+            lineNumber: 103
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 115
+                    lineNumber: 104
                 },
                 __self: this,
                 children: "Your Profile"
@@ -44886,7 +44876,7 @@ function ProfileView(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 116
+                    lineNumber: 105
                 },
                 __self: this,
                 children: [
@@ -44895,14 +44885,14 @@ function ProfileView(props) {
                         controlId: "username",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 117
+                            lineNumber: 106
                         },
                         __self: this,
                         children: [
                             /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 118
+                                    lineNumber: 107
                                 },
                                 __self: this,
                                 children: "Username:"
@@ -44915,7 +44905,7 @@ function ProfileView(props) {
                                 placeholder: "username",
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 119
+                                    lineNumber: 108
                                 },
                                 __self: this
                             })
@@ -44926,14 +44916,14 @@ function ProfileView(props) {
                         controlId: "email",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 126
+                            lineNumber: 115
                         },
                         __self: this,
                         children: [
                             /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 127
+                                    lineNumber: 116
                                 },
                                 __self: this,
                                 children: "Email address"
@@ -44946,7 +44936,7 @@ function ProfileView(props) {
                                 placeholder: "Enter new email",
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 128
+                                    lineNumber: 117
                                 },
                                 __self: this
                             })
@@ -44957,14 +44947,14 @@ function ProfileView(props) {
                         controlId: "password",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 135
+                            lineNumber: 124
                         },
                         __self: this,
                         children: [
                             /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 136
+                                    lineNumber: 125
                                 },
                                 __self: this,
                                 children: "Password"
@@ -44977,7 +44967,7 @@ function ProfileView(props) {
                                 placeholder: "Password",
                                 __source: {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 137
+                                    lineNumber: 126
                                 },
                                 __self: this
                             })
@@ -44988,7 +44978,7 @@ function ProfileView(props) {
                         onClick: updateUser,
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 145
+                            lineNumber: 134
                         },
                         __self: this,
                         children: "Update profile"
@@ -44999,25 +44989,17 @@ function ProfileView(props) {
                         onClick: handleDelete,
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 163
+                            lineNumber: 138
                         },
                         __self: this,
                         children: "Delete profile?"
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(Modal, {
-                        show: this.state.show,
-                        __source: {
-                            fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 170
-                        },
-                        __self: this
                     })
                 ]
             }),
             /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 172
+                    lineNumber: 147
                 },
                 __self: this,
                 children: "Favorite Movies"

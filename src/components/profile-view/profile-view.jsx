@@ -4,13 +4,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export function ProfileView(props) {
+export function ProfileView({ movies }) {
   const [setUsername, user] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const currentUser = localStorage.getItem("user");
-  const token = localStorage.getItem("token");
 
   //useEffect
   useEffect(() => {
@@ -35,7 +33,7 @@ export function ProfileView(props) {
 
   const updateUser = () => {
     let token = localStorage.getItem("token");
-    let currentUser = localStorage.getItem("user");
+    let user = localStorage.getItem("user");
     axios
       .put(
         `https://edieflixdb.herokuapp.com/users/${user}`,
@@ -61,7 +59,7 @@ export function ProfileView(props) {
   //delete current user
   const handleDelete = (e) => {
     let token = localStorage.getItem("token");
-    let currentUser = localStorage.getItem("user");
+    let user = localStorage.getItem("user");
     axios
       .delete("https://edieflixdb.herokuapp.com/users/${user}", {
         headers: { Authorization: `Bearer ${token}` },
@@ -101,15 +99,6 @@ export function ProfileView(props) {
     }
   };
 
-  state = {
-    show: false,
-  };
-  showModal = (e) => {
-    this.setState({
-      show: !this.state.show,
-    });
-  };
-
   return (
     <Container id="profile-view">
       <h1>Your Profile</h1>
@@ -145,20 +134,6 @@ export function ProfileView(props) {
         <Button variant="warning" onClick={updateUser}>
           Update profile
         </Button>
-        {/* <Row>
-        <Col className="label">Username </Col>
-        <Col className="value">{user.Username}</Col>
-      </Row> */}
-        {/* <Row className="mt-5">
-        <h4>Favorite Movies</h4>
-      </Row>
-      <Row className="mt-3">
-        <FavoriteMovies
-          movies={movies}
-          favoriteMovies={favoriteMovies}
-          currentUser={currentUser}
-        />
-      </Row> */}
 
         <Button
           className="d-block mt-5"
@@ -167,7 +142,7 @@ export function ProfileView(props) {
         >
           Delete profile?
         </Button>
-        <Modal show={this.state.show} />
+        {/* <Modal show={this.state.show} /> */}
       </Form>
       <h4>Favorite Movies</h4>
       {handleFavorite()}
