@@ -1,28 +1,30 @@
 import React from "React";
 import PropTypes from "prop-types";
-import { Container, Row, Col, Modal } from "react-bootstrap";
-export default class Modal extends React.Component {
-  onClose = (e) => {
-    this.props.onClose && this.props.onClose(e);
-  };
+import { Container, Row, Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+export class FavoriteMovies extends React.Component {
   render() {
-    if (!this.props.show) {
-      return null;
-    }
+    const { movie, onBackClick } = this.props;
     return (
-      <div class="modal" id="modal">
-        <h2>Modal Window</h2>
-        <div class="content">{this.props.children}</div>
-        <div class="actions">
-          <button class="toggle-button" onClick={this.onClose}>
-            close
-          </button>
-        </div>
-      </div>
+      <Container className="favorite-view">
+        <Row className="mt-3">
+          <Col className="label">Favorite Movies </Col>
+          <Col className="value">{movie.Title}</Col>
+        </Row>
+        <Row className="mt-3">
+          <Col className="label">Director </Col>
+          <Col className="value">{movie.Director.Name}</Col>
+        </Row>
+
+        <Button
+          onClick={() => {
+            onBackClick(null);
+          }}
+          variant="warning"
+        >
+          Back
+        </Button>
+      </Container>
     );
   }
 }
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
-};

@@ -3,46 +3,102 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Modal from "./favorite-movies";
 
 export function ProfileView(props) {
-  const [setUser, user] = useState(null);
-  const [movies] = useState(props.movies);
+  const [setUsername, user] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const currentUser = localStorage.getItem("user");
   const token = localStorage.getItem("token");
 
+  //useEffect
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  //retreive user information
   const getUser = () => {
+    let token = localStorage.getItem("token");
+    let currentUser = localStorage.getItem("user");
     axios
       .get(`https://edieflixdb.herokuapp.com/users/${currentUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
-        setUser(response.data);
+        setUsername(response.data.Username);
         setFavoriteMovies(response.data.favoriteMovies);
+        console.log(response.data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error("Error" + error));
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const handleDelete = (e) => {
+  const updateUser = () => {
+    let token = localStorage.getItem("token");
+    let currentUser = localStorage.getItem("user");
     axios
-      .delete("https://edieflixdb.herokuapp.com/users/${currentUser}", {
+      .put(
+        `https://edieflixdb.herokuapp.com/users/${user}`,
+        {
+          Username: username,
+          Email: email,
+          Password: password,
+        },
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      )
+      .then((response) => {
+        alert("Your profile has been updated");
+        localStorage.setItem("user", response.data.Username),
+          console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("Error updating user" + error);
+      });
+  };
+
+  //delete current user
+  const handleDelete = (e) => {
+    let token = localStorage.getItem("token");
+    let currentUser = localStorage.getItem("user");
+    axios
+      .delete("https://edieflixdb.herokuapp.com/users/${user}", {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then(() => {
+      .then((response) => {
         alert(`The account ${user.Username} has been deleted.`);
-        localStorage.clear();
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         window.open("/register", "_self");
       })
       .catch((response) => {
         console.error(response);
         alert("unable to delete user");
       });
+  };
+
+  //update favorite movies
+  const handleFavorite = () => {
+    console.log(movies);
+    if (movies.length + 0) {
+      return (
+        <Row className="justify-content-md-center">
+          {favoriteMovies.length === 0 ? (
+            <h5>Add some movies to your list</h5>
+          ) : (
+            favoriteMovies.map((movieId, i) => (
+              <Col md={6} lg={4}>
+                <MovieCard
+                  key={`${i}-${movieId}`}
+                  movie={movies.find((m) => m._id == movieId)}
+                />
+              </Col>
+            ))
+          )}
+        </Row>
+      );
+    }
   };
 
   state = {
@@ -56,18 +112,44 @@ export function ProfileView(props) {
 
   return (
     <Container id="profile-view">
-      <Row>
-        <h4>your profile information</h4>
-      </Row>
-      <Row>
+      <h1>Your Profile</h1>
+      <Form>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            type="text"
+            placeholder="username"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            placeholder="Enter new email"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            value={password}
+            placeholder="Password"
+          />
+        </Form.Group>
+
+        <Button variant="warning" onClick={updateUser}>
+          Update profile
+        </Button>
+        {/* <Row>
         <Col className="label">Username </Col>
         <Col className="value">{user.Username}</Col>
-      </Row>
-      {/* <Row className="mt-3">
-        <Col className="label">Email:</Col>
-        <Col className="value">{user.Email}</Col>
-      </Row>
-      <Row className="mt-5">
+      </Row> */}
+        {/* <Row className="mt-5">
         <h4>Favorite Movies</h4>
       </Row>
       <Row className="mt-3">
@@ -77,29 +159,18 @@ export function ProfileView(props) {
           currentUser={currentUser}
         />
       </Row> */}
-      <div className="movie-modal">
-        <Button
-          class="toggle-button"
-          id="centered-toggle-button"
-          onClick={(e) => {
-            this.showModal(e);
-          }}
-        >
-          {" "}
-          Favorite Movies{" "}
-        </Button>
 
-        <Modal onClose={this.showModal} show={this.state.show}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-          deserunt corrupti, ut fugit magni qui quasi nisi amet repellendus non
-          fuga omnis a sed impedit explicabo accusantium nihil doloremque
-          consequuntur.
-        </Modal>
-      </div>
-      <Button className="d-block mt-5" variant="warning" onClick={handleDelete}>
-        Delete profile?
-      </Button>
-      <Modal show={this.state.show} />
+        <Button
+          className="d-block mt-5"
+          variant="warning"
+          onClick={handleDelete}
+        >
+          Delete profile?
+        </Button>
+        <Modal show={this.state.show} />
+      </Form>
+      <h4>Favorite Movies</h4>
+      {handleFavorite()}
     </Container>
   );
 }
