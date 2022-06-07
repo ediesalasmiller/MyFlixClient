@@ -37,13 +37,17 @@ export function NavigationBar({ user }) {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="/">My Flix</Navbar.Brand>
+        <Navbar.Brand href="/">My Flix Movie Database</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll"></Navbar.Collapse>
-        <Nav className="me-auto">
-          {isAuth() && <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>}
-          {isAuth() && <Nav.Link href="/">Sign in</Nav.Link>}
-          {isAuth() && <Nav.Link href="/register">Sign up</Nav.Link>}
+        <NavDropdown title="Profile" id="basic-nav-dropdown">
+          {isAuth() && (
+            <NavDropdown.Item href={`/users/${user}`}>Profile</NavDropdown.Item>
+          )}
+          {isAuth() && <NavDropdown.Item href="/">Sign in</NavDropdown.Item>}
+          {isAuth() && (
+            <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
+          )}
 
           <Button
             variant="link"
@@ -53,7 +57,7 @@ export function NavigationBar({ user }) {
           >
             Logout
           </Button>
-        </Nav>
+        </NavDropdown>
       </Container>
     </Navbar>
   );

@@ -3,8 +3,9 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { UserInfo } from "./user-info";
-import FavoriteMovieView from "./favorite-movies";
+// import { UserInfo } from "./user-info";
+import FavoriteMoviesView from "./favorite-movies";
+
 export function ProfileView({ movies }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -127,9 +128,61 @@ export function ProfileView({ movies }) {
           token={token}
         />
       </Row>
+
       <Row>
-        <UserInfo />
+        <h4>Edit profile</h4>
       </Row>
+      <Row>
+        <Col sm="10" md="8" lg="6">
+          <Form>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                required
+              />
+              {/* display validation error */}
+              {values.usernameErr && <p>{values.usernameErr}</p>}
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+              {/* display validation error */}
+              {values.passwordErr && <p>{values.passwordErr}</p>}
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@mail.com"
+                required
+              />
+              {/* display validation error */}
+              {values.emailErr && <p>{values.emailErr}</p>}
+            </Form.Group>
+
+            <Form.Group controlId="formEdit" className="mt-3">
+              <Button variant="warning" type="submit" onClick={updateUser}>
+                Edit profile
+              </Button>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+      <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>
+        Delete profile?
+      </Button>
     </Container>
   );
 }

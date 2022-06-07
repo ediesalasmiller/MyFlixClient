@@ -180,13 +180,23 @@ export class MainView extends React.Component {
 
           {/* Route to profile view */}
           <Route
-            path="/users/:name"
+            path={`/users/:name`}
             render={({ history }) => {
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                  </Col>
+                );
+              if (movies.length === 0) return <div className="main-view" />;
               return (
-                <ProfileView
-                  user={this.state.user}
-                  onBackClick={() => history.goBack()}
-                />
+                <Col md={8}>
+                  <ProfileView
+                    movies={movies}
+                    user={user}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
               );
             }}
           />

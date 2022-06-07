@@ -25571,11 +25571,23 @@ class MainView extends _reactDefault.default.Component {
                             __self: this
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
-                            path: "/users/:name",
+                            path: `/users/:name`,
                             render: ({ history  })=>{
-                                return(/*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
-                                    user: this.state.user,
-                                    onBackClick: ()=>history.goBack()
+                                if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                                    children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
+                                        onLoggedIn: (user1)=>this.onLoggedIn(user1)
+                                    })
+                                }));
+                                if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+                                    className: "main-view"
+                                }));
+                                return(/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
+                                    md: 8,
+                                    children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
+                                        movies: movies,
+                                        user: user,
+                                        onBackClick: ()=>history.goBack()
+                                    })
                                 }));
                             },
                             __source: {
@@ -44757,7 +44769,7 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _userInfo = require("./user-info");
+// import { UserInfo } from "./user-info";
 var _favoriteMovies = require("./favorite-movies");
 var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
 var _s = $RefreshSig$();
@@ -44827,13 +44839,13 @@ function ProfileView({ movies  }) {
             className: "justify-content-md-center",
             __source: {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 82
+                lineNumber: 83
             },
             __self: this,
             children: favoriteMovies.length === 0 ? /*#__PURE__*/ _jsxRuntime.jsx("h5", {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 84
+                    lineNumber: 85
                 },
                 __self: this,
                 children: "Add some movies to your list"
@@ -44842,7 +44854,7 @@ function ProfileView({ movies  }) {
                     lg: 4,
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 87
+                        lineNumber: 88
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(MovieCard, {
@@ -44850,7 +44862,7 @@ function ProfileView({ movies  }) {
                         ),
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 88
+                            lineNumber: 89
                         },
                         __self: this
                     }, `${i}-${movieId}`)
@@ -44862,14 +44874,14 @@ function ProfileView({ movies  }) {
         id: "profile-view",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 101
+            lineNumber: 102
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 102
+                    lineNumber: 103
                 },
                 __self: this,
                 children: "Your Profile"
@@ -44877,7 +44889,7 @@ function ProfileView({ movies  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 103
+                    lineNumber: 104
                 },
                 __self: this,
                 children: [
@@ -44885,7 +44897,7 @@ function ProfileView({ movies  }) {
                         className: "label",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 104
+                            lineNumber: 105
                         },
                         __self: this,
                         children: "Username:"
@@ -44894,7 +44906,7 @@ function ProfileView({ movies  }) {
                         className: "value",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 105
+                            lineNumber: 106
                         },
                         __self: this,
                         children: user.Username
@@ -44905,7 +44917,7 @@ function ProfileView({ movies  }) {
                 className: "mt-3",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 107
+                    lineNumber: 108
                 },
                 __self: this,
                 children: [
@@ -44913,7 +44925,7 @@ function ProfileView({ movies  }) {
                         className: "label",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 108
+                            lineNumber: 109
                         },
                         __self: this,
                         children: "Password:"
@@ -44922,7 +44934,7 @@ function ProfileView({ movies  }) {
                         className: "value",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 109
+                            lineNumber: 110
                         },
                         __self: this,
                         children: "******"
@@ -44933,7 +44945,7 @@ function ProfileView({ movies  }) {
                 className: "mt-3",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 111
+                    lineNumber: 112
                 },
                 __self: this,
                 children: [
@@ -44941,7 +44953,7 @@ function ProfileView({ movies  }) {
                         className: "label",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 112
+                            lineNumber: 113
                         },
                         __self: this,
                         children: "Email:"
@@ -44950,7 +44962,7 @@ function ProfileView({ movies  }) {
                         className: "value",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 113
+                            lineNumber: 114
                         },
                         __self: this,
                         children: user.Email
@@ -44961,7 +44973,7 @@ function ProfileView({ movies  }) {
                 className: "mt-3",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 115
+                    lineNumber: 116
                 },
                 __self: this,
                 children: [
@@ -44969,7 +44981,7 @@ function ProfileView({ movies  }) {
                         className: "label",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 116
+                            lineNumber: 117
                         },
                         __self: this,
                         children: "Birthday:"
@@ -44978,7 +44990,7 @@ function ProfileView({ movies  }) {
                         className: "value",
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 117
+                            lineNumber: 118
                         },
                         __self: this,
                         children: user.Birthday
@@ -44989,13 +45001,13 @@ function ProfileView({ movies  }) {
                 className: "mt-5",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 119
+                    lineNumber: 120
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 120
+                        lineNumber: 121
                     },
                     __self: this,
                     children: "Favorite movies"
@@ -45004,17 +45016,17 @@ function ProfileView({ movies  }) {
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 122
+                    lineNumber: 123
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(FavoriteMoviesView, {
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMoviesDefault.default, {
                     movies: movies,
                     favouriteMovies: favoriteMovies,
                     currentUser: currentUser,
                     token: token,
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 123
+                        lineNumber: 124
                     },
                     __self: this
                 })
@@ -45022,16 +45034,191 @@ function ProfileView({ movies  }) {
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 130
+                    lineNumber: 132
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_userInfo.UserInfo, {
+                children: /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 131
+                        lineNumber: 133
                     },
-                    __self: this
+                    __self: this,
+                    children: "Edit profile"
                 })
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                __source: {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 135
+                },
+                __self: this,
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                    sm: "10",
+                    md: "8",
+                    lg: "6",
+                    __source: {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 136
+                    },
+                    __self: this,
+                    children: /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default, {
+                        __source: {
+                            fileName: "src/components/profile-view/profile-view.jsx",
+                            lineNumber: 137
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default.Group, {
+                                controlId: "formUsername",
+                                __source: {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 138
+                                },
+                                __self: this,
+                                children: [
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 139
+                                        },
+                                        __self: this,
+                                        children: "Username:"
+                                    }),
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
+                                        type: "text",
+                                        value: username,
+                                        onChange: (e)=>setUsername(e.target.value)
+                                        ,
+                                        placeholder: "Username",
+                                        required: true,
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 140
+                                        },
+                                        __self: this
+                                    }),
+                                    values.usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 148
+                                        },
+                                        __self: this,
+                                        children: values.usernameErr
+                                    })
+                                ]
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default.Group, {
+                                controlId: "formPassword",
+                                __source: {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 150
+                                },
+                                __self: this,
+                                children: [
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 151
+                                        },
+                                        __self: this,
+                                        children: "Password:"
+                                    }),
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
+                                        type: "password",
+                                        value: password,
+                                        onChange: (e)=>setPassword(e.target.value)
+                                        ,
+                                        placeholder: "Password",
+                                        required: true,
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 152
+                                        },
+                                        __self: this
+                                    }),
+                                    values.passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 160
+                                        },
+                                        __self: this,
+                                        children: values.passwordErr
+                                    })
+                                ]
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsxs(_formDefault.default.Group, {
+                                controlId: "formEmail",
+                                __source: {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 162
+                                },
+                                __self: this,
+                                children: [
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 163
+                                        },
+                                        __self: this,
+                                        children: "Password:"
+                                    }),
+                                    /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
+                                        type: "text",
+                                        value: email,
+                                        onChange: (e)=>setEmail(e.target.value)
+                                        ,
+                                        placeholder: "your@mail.com",
+                                        required: true,
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 164
+                                        },
+                                        __self: this
+                                    }),
+                                    values.emailErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                                        __source: {
+                                            fileName: "src/components/profile-view/profile-view.jsx",
+                                            lineNumber: 172
+                                        },
+                                        __self: this,
+                                        children: values.emailErr
+                                    })
+                                ]
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Group, {
+                                controlId: "formEdit",
+                                className: "mt-3",
+                                __source: {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 175
+                                },
+                                __self: this,
+                                children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                                    variant: "warning",
+                                    type: "submit",
+                                    onClick: updateUser,
+                                    __source: {
+                                        fileName: "src/components/profile-view/profile-view.jsx",
+                                        lineNumber: 176
+                                    },
+                                    __self: this,
+                                    children: "Edit profile"
+                                })
+                            })
+                        ]
+                    })
+                })
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                className: "d-block mt-5",
+                variant: "danger",
+                onClick: handleDelete,
+                __source: {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 183
+                },
+                __self: this,
+                children: "Delete profile?"
             })
         ]
     }));
@@ -45046,58 +45233,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","./user-info":"cK8m8","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"cK8m8":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$94e5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$94e5.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "UserInfo", ()=>UserInfo
-);
-var _jsxRuntime = require("react/jsx-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-function UserInfo({ email , user  }) {
-    return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
-        children: [
-            /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                __source: {
-                    fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 6
-                },
-                __self: this,
-                children: [
-                    " User: ",
-                    user
-                ]
-            }),
-            /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                __source: {
-                    fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 7
-                },
-                __self: this,
-                children: [
-                    "Email: ",
-                    email
-                ]
-            })
-        ]
-    }));
-}
-_c = UserInfo;
-var _c;
-$RefreshReg$(_c, "UserInfo");
-
-  $parcel$ReactRefreshHelpers$94e5.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"gKhXS":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","react-bootstrap/Form":"5ykgY","react-bootstrap/Button":"9CzHT","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"gKhXS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45310,7 +45446,7 @@ function NavigationBar({ user  }) {
                         lineNumber: 40
                     },
                     __self: this,
-                    children: "My Flix"
+                    children: "My Flix Movie Database"
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
                     "aria-controls": "navbarScroll",
@@ -45328,37 +45464,38 @@ function NavigationBar({ user  }) {
                     },
                     __self: this
                 }),
-                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
-                    className: "me-auto",
+                /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.NavDropdown, {
+                    title: "Profile",
+                    id: "basic-nav-dropdown",
                     __source: {
                         fileName: "src/components/nav-bar/navbar.jsx",
                         lineNumber: 43
                     },
                     __self: this,
                     children: [
-                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.NavDropdown.Item, {
                             href: `/users/${user}`,
-                            __source: {
-                                fileName: "src/components/nav-bar/navbar.jsx",
-                                lineNumber: 44
-                            },
-                            __self: this,
-                            children: "Profile"
-                        }),
-                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                            href: "/",
                             __source: {
                                 fileName: "src/components/nav-bar/navbar.jsx",
                                 lineNumber: 45
                             },
                             __self: this,
+                            children: "Profile"
+                        }),
+                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.NavDropdown.Item, {
+                            href: "/",
+                            __source: {
+                                fileName: "src/components/nav-bar/navbar.jsx",
+                                lineNumber: 47
+                            },
+                            __self: this,
                             children: "Sign in"
                         }),
-                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                        isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.NavDropdown.Item, {
                             href: "/register",
                             __source: {
                                 fileName: "src/components/nav-bar/navbar.jsx",
-                                lineNumber: 46
+                                lineNumber: 49
                             },
                             __self: this,
                             children: "Sign up"
@@ -45370,7 +45507,7 @@ function NavigationBar({ user  }) {
                             },
                             __source: {
                                 fileName: "src/components/nav-bar/navbar.jsx",
-                                lineNumber: 48
+                                lineNumber: 52
                             },
                             __self: this,
                             children: "Logout"
