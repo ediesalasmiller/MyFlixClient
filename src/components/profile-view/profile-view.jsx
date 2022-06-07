@@ -3,13 +3,15 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import { UserInfo } from "./user-info";
+import FavoriteMovieView from "./favorite-movies";
 export function ProfileView({ movies }) {
-  const [setUsername, user] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-
+  const currentUser = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
   //useEffect
   useEffect(() => {
     getUser();
@@ -17,14 +19,14 @@ export function ProfileView({ movies }) {
 
   //retreive user information
   const getUser = () => {
-    let token = localStorage.getItem("token");
-    let currentUser = localStorage.getItem("user");
     axios
       .get(`https://edieflixdb.herokuapp.com/users/${currentUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         setUsername(response.data.Username);
+        setPassword(response.data.Password);
+        setEmail(response.data.Email);
         setFavoriteMovies(response.data.favoriteMovies);
         console.log(response.data);
       })
@@ -32,11 +34,9 @@ export function ProfileView({ movies }) {
   };
 
   const updateUser = () => {
-    let token = localStorage.getItem("token");
-    let user = localStorage.getItem("user");
     axios
       .put(
-        `https://edieflixdb.herokuapp.com/users/${user}`,
+        `https://edieflixdb.herokuapp.com/users/${currentUser}`,
         {
           Username: username,
           Email: email,
@@ -48,7 +48,7 @@ export function ProfileView({ movies }) {
       )
       .then((response) => {
         alert("Your profile has been updated");
-        localStorage.setItem("user", response.data.Username),
+        localStorage.setItem("user", response.data.User),
           console.log(response.data);
       })
       .catch((e) => {
@@ -58,10 +58,8 @@ export function ProfileView({ movies }) {
 
   //delete current user
   const handleDelete = (e) => {
-    let token = localStorage.getItem("token");
-    let user = localStorage.getItem("user");
     axios
-      .delete("https://edieflixdb.herokuapp.com/users/${user}", {
+      .delete(`https://edieflixdb.herokuapp.com/users/${currentUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -102,50 +100,36 @@ export function ProfileView({ movies }) {
   return (
     <Container id="profile-view">
       <h1>Your Profile</h1>
-      <Form>
-        <Form.Group className="mb-3" controlId="username">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            type="text"
-            placeholder="username"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="email"
-            placeholder="Enter new email"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            value={password}
-            placeholder="Password"
-          />
-        </Form.Group>
-
-        <Button variant="warning" onClick={updateUser}>
-          Update profile
-        </Button>
-
-        <Button
-          className="d-block mt-5"
-          variant="warning"
-          onClick={handleDelete}
-        >
-          Delete profile?
-        </Button>
-        {/* <Modal show={this.state.show} /> */}
-      </Form>
-      <h4>Favorite Movies</h4>
-      {handleFavorite()}
+      <Row>
+        <Col className="label">Username:</Col>
+        <Col className="value">{user.Username}</Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="label">Password:</Col>
+        <Col className="value">******</Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="label">Email:</Col>
+        <Col className="value">{user.Email}</Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="label">Birthday:</Col>
+        <Col className="value">{user.Birthday}</Col>
+      </Row>
+      <Row className="mt-5">
+        <h4>Favorite movies</h4>
+      </Row>
+      <Row>
+        <FavoriteMoviesView
+          movies={movies}
+          favouriteMovies={favoriteMovies}
+          currentUser={currentUser}
+          token={token}
+        />
+      </Row>
+      <Row>
+        <UserInfo />
+      </Row>
     </Container>
   );
 }
