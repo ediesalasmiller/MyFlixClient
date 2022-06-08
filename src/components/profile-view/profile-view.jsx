@@ -4,11 +4,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 // import { UserInfo } from "./user-info";
-import FavoriteMoviesView from "./favorite-movies";
+import { FavoriteMoviesView } from "./favorite-movies";
 
-export function ProfileView({ movies }) {
-  const [username, setUsername] = useState("");
+export function ProfileView(props) {
+  const [username, setUsername] = useState(props.username);
+  const [movies, setMovies] = useState(props.movies);
   const [password, setPassword] = useState("");
+  const [birthday, setBirthday] = useState("");
   const [email, setEmail] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const currentUser = localStorage.getItem("user");
@@ -103,7 +105,7 @@ export function ProfileView({ movies }) {
       <h1>Your Profile</h1>
       <Row>
         <Col className="label">Username:</Col>
-        <Col className="value">{user.Username}</Col>
+        <Col className="value">{username}</Col>
       </Row>
       <Row className="mt-3">
         <Col className="label">Password:</Col>
@@ -111,11 +113,11 @@ export function ProfileView({ movies }) {
       </Row>
       <Row className="mt-3">
         <Col className="label">Email:</Col>
-        <Col className="value">{user.Email}</Col>
+        <Col className="value">{email}</Col>
       </Row>
       <Row className="mt-3">
         <Col className="label">Birthday:</Col>
-        <Col className="value">{user.Birthday}</Col>
+        <Col className="value">{birthday}</Col>
       </Row>
       <Row className="mt-5">
         <h4>Favorite movies</h4>
@@ -145,7 +147,7 @@ export function ProfileView({ movies }) {
                 required
               />
               {/* display validation error */}
-              {values.usernameErr && <p>{values.usernameErr}</p>}
+              {/* {values.usernameErr && <p>{values.usernameErr}</p>} */}
             </Form.Group>
             <Form.Group controlId="formPassword">
               <Form.Label>Password:</Form.Label>
@@ -157,7 +159,7 @@ export function ProfileView({ movies }) {
                 required
               />
               {/* display validation error */}
-              {values.passwordErr && <p>{values.passwordErr}</p>}
+              {/* {values.passwordErr && <p>{values.passwordErr}</p>} */}
             </Form.Group>
             <Form.Group controlId="formEmail">
               <Form.Label>Password:</Form.Label>
@@ -169,7 +171,7 @@ export function ProfileView({ movies }) {
                 required
               />
               {/* display validation error */}
-              {values.emailErr && <p>{values.emailErr}</p>}
+              {/* {values.emailErr && <p>{values.emailErr}</p>} */}
             </Form.Group>
 
             <Form.Group controlId="formEdit" className="mt-3">
@@ -181,7 +183,7 @@ export function ProfileView({ movies }) {
         </Col>
       </Row>
       <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>
-        Delete profile?
+        Delete profile???
       </Button>
     </Container>
   );

@@ -5,7 +5,7 @@ import { Button, Card, Col } from "react-bootstrap";
 
 export function FavoriteMoviesView(props) {
   const { movies, favoriteMovies, currentUser, token } = props;
-  const favoriteMoviesId = favoriteMovies.map((m) => m._id);
+  const favoriteMoviesId = (favoriteMovies || []).map((m) => m._id);
 
   const favoriteMoviesList = movies.filter((m) => {
     return favoriteMoviesId.includes(m._id);
