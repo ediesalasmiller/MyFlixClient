@@ -45022,7 +45022,7 @@ function ProfileView(props) {
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMovies.FavoriteMoviesView, {
                     movies: movies,
-                    favouriteMovies: favoriteMovies,
+                    favoriteMovies: favoriteMovies,
                     currentUser: currentUser,
                     token: token,
                     __source: {
@@ -45236,7 +45236,7 @@ function FavoriteMoviesView(props) {
         return favoriteMoviesId.includes(m._id);
     });
     const handleMovieDelete = (movieId)=>{
-        _axiosDefault.default.delete(`https://edieflixdb.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
+        _axiosDefault.default.delete(`https://edieflixdb.herokuapp.com/users/${currentUser}/favorites/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -45279,7 +45279,7 @@ function FavoriteMoviesView(props) {
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                            to: `/movies/${movie._id}`,
+                            to: `/favorites/${movie._id}`,
                             __source: {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
                                 lineNumber: 35
@@ -45319,7 +45319,7 @@ function FavoriteMoviesView(props) {
                                     children: movie.Description
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                                    to: `/movies/${movie._id}`,
+                                    to: `/favorites/${movie._id}`,
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
                                         lineNumber: 41
@@ -45349,7 +45349,7 @@ function FavoriteMoviesView(props) {
                                         lineNumber: 50
                                     },
                                     __self: this,
-                                    children: "Open"
+                                    children: "Delete movie"
                                 })
                             ]
                         })

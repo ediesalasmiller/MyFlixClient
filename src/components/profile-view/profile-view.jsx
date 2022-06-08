@@ -125,7 +125,7 @@ export function ProfileView(props) {
       <Row>
         <FavoriteMoviesView
           movies={movies}
-          favouriteMovies={favoriteMovies}
+          favoriteMovies={favoriteMovies}
           currentUser={currentUser}
           token={token}
         />

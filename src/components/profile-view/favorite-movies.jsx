@@ -14,7 +14,7 @@ export function FavoriteMoviesView(props) {
   const handleMovieDelete = (movieId) => {
     axios
       .delete(
-        `https://edieflixdb.herokuapp.com/users/${currentUser}/movies/${movieId}`,
+        `https://edieflixdb.herokuapp.com/users/${currentUser}/favorites/${movieId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then(() => {
@@ -32,13 +32,13 @@ export function FavoriteMoviesView(props) {
           return (
             <Col xs={10} sm={8} md={6} lg={4}>
               <Card id="movie-card">
-                <Link to={`/movies/${movie._id}`}>
+                <Link to={`/favorites/${movie._id}`}>
                   <Card.Img variant="top" src={movie.ImagePath} />
                 </Link>
                 <Card.Body>
                   <Card.Title>{movie.Title}</Card.Title>
                   <Card.Text>{movie.Description}</Card.Text>
-                  <Link to={`/movies/${movie._id}`}>
+                  <Link to={`/favorites/${movie._id}`}>
                     <Button
                       className="button"
                       variant="outline-primary"
@@ -55,7 +55,7 @@ export function FavoriteMoviesView(props) {
                       handleMovieDelete(movie._id);
                     }}
                   >
-                    Open
+                    Delete movie
                   </Button>
                 </Card.Body>
               </Card>
