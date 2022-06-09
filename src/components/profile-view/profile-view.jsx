@@ -3,8 +3,10 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import { UserInfo } from "./user-info";
-import { FavoriteMoviesView } from "./favorite-movies";
+
+import "./profile-view";
+import { MovieCard } from "../movie-card/movie-card";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export function ProfileView(props) {
   const [username, setUsername] = useState(props.username);
@@ -78,16 +80,77 @@ export function ProfileView(props) {
         alert("unable to delete user");
       });
   };
+  //delete Movie from favorites button
+  const handleMovieDelete = (movie) => {
+    axios
+      .delete(
+        `https://edieflixdb.herokuapp.com/users/${currentUser}/favorites/${movie._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then(() => {
+        alert(`movie deleted.`);
+        window.open("/users/:username", "_self");
+      })
+      .catch((error) => console.error(error));
+  };
+
+  //render favorite movies
+  //update favorite movies
+  const handleFavorite = () => {
+    console.log(movies);
+    if (movies.length + 0) {
+      return (
+        <Row className="justify-content-md-center">
+          {favoriteMovies.length === 0 ? (
+            <h5>Add some movies to your list</h5>
+          ) : (
+            favoriteMovies.map((movieId, i) => (
+              <Col md={6} lg={4}>
+                <MovieCard
+                  key={`${i}-${movieId}`}
+                  movie={movies.find((m) => m._id == movieId)}
+                />
+                <Button
+                  className="button ml-2"
+                  variant="outline-primary"
+                  size="sm"
+                  onClick={() => {
+                    handleMovieDelete(_id);
+                  }}
+                >
+                  Remove from List
+                </Button>
+              </Col>
+            ))
+          )}
+        </Row>
+      );
+    }
+  };
 
   return (
-    <>
+    <Container id="profile-view">
+      <h1>Your Profile</h1>
       <Row>
-        <h4>Your profile</h4>
+        <Col className="label">Username:</Col>
+        <Col className="value">{username}</Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="label">Password:</Col>
+        <Col className="value">***secret</Col>
+      </Row>
+      <Row className="mt-3">
+        <Col className="label">Email:</Col>
+        <Col className="value">{email}</Col>
+      </Row>
+
+      <Row>
+        <h4>Make some changes:</h4>
       </Row>
       <Row>
         <Col sm="10" md="8" lg="6">
           <p>to make changes to profile fill out form below.</p>
-          <Form>
+          <Form className="update-info">
             <Form.Group controlId="formUsername">
               <Form.Label>Username: </Form.Label>
               <Form.Control
@@ -99,7 +162,7 @@ export function ProfileView(props) {
               {/* display validation error */}
               {/* {values.usernameErr && <p>{values.usernameErr}</p>} */}
             </Form.Group>
-            <Form.Group controlId="formPassword">
+            <Form.Group controlId="formGridPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
@@ -111,11 +174,12 @@ export function ProfileView(props) {
               {/* display validation error */}
               {/* {values.passwordErr && <p>{values.passwordErr}</p>} */}
             </Form.Group>
-            <Form.Group controlId="formEmail">
+            <Form.Group controlId="formGridEmail">
               <Form.Label>Email: </Form.Label>
               <Form.Control
                 type="text"
                 value={email}
+                placeholder="email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -137,15 +201,21 @@ export function ProfileView(props) {
         </Col>
       </Row>
       <Col className="mt-5">
-        <Row>
+        <p></p>
+        <h2>Favorite Movies:</h2>
+
+        {/* Calling function to render users favorite movies on the profile page */}
+        {handleFavorite()}
+
+        {/* <Row>
           <FavoriteMoviesView
             movies={movies}
             favoriteMovies={favoriteMovies}
             currentUser={currentUser}
             token={token}
           />
-        </Row>
+        </Row> */}
       </Col>
-    </>
+    </Container>
   );
 }

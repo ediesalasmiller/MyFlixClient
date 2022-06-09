@@ -82,7 +82,7 @@ export function LoginView(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
           {/* code added here to display validation error */}
-          {passwordErr && <p>{passwordErr}</p>}
+          {/* {passwordErr && <p>{passwordErr}</p>} */}
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={handleSubmit}>

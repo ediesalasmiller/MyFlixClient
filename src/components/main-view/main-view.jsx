@@ -16,6 +16,7 @@ import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../nav-bar/navbar";
 import { GenreView } from "../genre-view/genre-view";
+import { FavoriteMoviesView } from "../profile-view/favorite-movies";
 
 //MainView state
 export class MainView extends React.Component {
@@ -180,7 +181,7 @@ export class MainView extends React.Component {
 
           {/* Route to profile view */}
           <Route
-            path={`/users/:name`}
+            path={`/users/:username`}
             render={({ history }) => {
               if (!user)
                 return (
@@ -201,9 +202,9 @@ export class MainView extends React.Component {
             }}
           />
 
-          <Route
-            path="/movies/:id"
-            render={({ match, history }) => {
+          {/* <Route
+            path={`/users/:username/movies/:id`}
+            render={({ history }) => {
               if (!user)
                 return (
                   <Col>
@@ -211,16 +212,9 @@ export class MainView extends React.Component {
                   </Col>
                 );
               if (movies.length === 0) return <div className="main-view" />;
-              return (
-                <Col md={8}>
-                  <MovieView
-                    movie={movies.find((m) => m._id === match.params.id)}
-                    onBackClick={() => history.goBack()}
-                  />
-                </Col>
-              );
+              return <Col md={8}></Col>;
             }}
-          />
+          /> */}
         </Row>
       </Router>
     );
