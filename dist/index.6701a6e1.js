@@ -45090,10 +45090,10 @@ function ProfileView(props) {
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Control, {
                                             type: "password",
+                                            placeholder: "***",
                                             value: password,
                                             onChange: (e)=>setPassword(e.target.value)
                                             ,
-                                            placeholder: "***",
                                             required: true,
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
@@ -45107,14 +45107,14 @@ function ProfileView(props) {
                                     controlId: "formGridEmail",
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 177
+                                        lineNumber: 178
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default.Label, {
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 178
+                                                lineNumber: 179
                                             },
                                             __self: this,
                                             children: "Email: "
@@ -45128,7 +45128,7 @@ function ProfileView(props) {
                                             required: true,
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 179
+                                                lineNumber: 180
                                             },
                                             __self: this
                                         })
@@ -45139,7 +45139,7 @@ function ProfileView(props) {
                                     className: "mt-3",
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 190
+                                        lineNumber: 191
                                     },
                                     __self: this,
                                     children: [
@@ -45148,7 +45148,7 @@ function ProfileView(props) {
                                             onClick: updateUser,
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 191
+                                                lineNumber: 192
                                             },
                                             __self: this,
                                             children: "Update profile"
@@ -45159,7 +45159,7 @@ function ProfileView(props) {
                                             onClick: handleDelete,
                                             __source: {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 195
+                                                lineNumber: 196
                                             },
                                             __self: this,
                                             children: "Delete profile"
@@ -45176,21 +45176,21 @@ function ProfileView(props) {
                 className: "mt-5",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 203
+                    lineNumber: 204
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("p", {
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 204
+                            lineNumber: 205
                         },
                         __self: this
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 205
+                            lineNumber: 206
                         },
                         __self: this,
                         children: "Favorite Movies:"

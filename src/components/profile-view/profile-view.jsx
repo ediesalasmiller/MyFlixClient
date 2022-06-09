@@ -166,9 +166,10 @@ export function ProfileView(props) {
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
+                placeholder="***"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="***"
+                
                 required
               />
               {/* display validation error */}
