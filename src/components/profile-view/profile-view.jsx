@@ -30,7 +30,7 @@ export function ProfileView(props) {
         setUsername(response.data.Username);
         setPassword(response.data.Password);
         setEmail(response.data.Email);
-        setFavoriteMovies(response.data.favoriteMovies);
+        setFavoriteMovies(response.data.FavoriteMovies);
         console.log(response.data);
       })
       .catch((error) => console.error("Error" + error));
@@ -44,6 +44,7 @@ export function ProfileView(props) {
           Username: username,
           Email: email,
           Password: password,
+          FavoriteMovies: favoriteMovies,
         },
         {
           headers: { Authorization: "Bearer " + token },
@@ -51,6 +52,7 @@ export function ProfileView(props) {
       )
       .then((response) => {
         alert("Your profile has been updated");
+        window.open("/", "_self");
         localStorage.setItem("user", response.data.User),
           console.log(response.data);
       })
@@ -67,7 +69,7 @@ export function ProfileView(props) {
       })
       .then((response) => {
         alert(`The account ${user.Username} has been deleted.`);
-        localStorage.removeItem("user");
+        localStorage.removeItem("currentUser");
         localStorage.removeItem("token");
         window.open("/register", "_self");
       })
@@ -77,73 +79,21 @@ export function ProfileView(props) {
       });
   };
 
-  //update favorite movies
-  const handleFavorite = () => {
-    console.log(movies);
-    if (movies.length + 0) {
-      return (
-        <Row className="justify-content-md-center">
-          {favoriteMovies.length === 0 ? (
-            <h5>Add some movies to your list</h5>
-          ) : (
-            favoriteMovies.map((movieId, i) => (
-              <Col md={6} lg={4}>
-                <MovieCard
-                  key={`${i}-${movieId}`}
-                  movie={movies.find((m) => m._id == movieId)}
-                />
-              </Col>
-            ))
-          )}
-        </Row>
-      );
-    }
-  };
-
   return (
-    <Container id="profile-view">
-      <h1>Your Profile</h1>
+    <>
       <Row>
-        <Col className="label">Username:</Col>
-        <Col className="value">{username}</Col>
-      </Row>
-      <Row className="mt-3">
-        <Col className="label">Password:</Col>
-        <Col className="value">******</Col>
-      </Row>
-      <Row className="mt-3">
-        <Col className="label">Email:</Col>
-        <Col className="value">{email}</Col>
-      </Row>
-      <Row className="mt-3">
-        <Col className="label">Birthday:</Col>
-        <Col className="value">{birthday}</Col>
-      </Row>
-      <Row className="mt-5">
-        <h4>Favorite movies</h4>
-      </Row>
-      <Row>
-        <FavoriteMoviesView
-          movies={movies}
-          favoriteMovies={favoriteMovies}
-          currentUser={currentUser}
-          token={token}
-        />
-      </Row>
-
-      <Row>
-        <h4>Edit profile</h4>
+        <h4>Your profile</h4>
       </Row>
       <Row>
         <Col sm="10" md="8" lg="6">
+          <p>to make changes to profile fill out form below.</p>
           <Form>
             <Form.Group controlId="formUsername">
-              <Form.Label>Username:</Form.Label>
+              <Form.Label>Username: </Form.Label>
               <Form.Control
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
                 required
               />
               {/* display validation error */}
@@ -155,19 +105,18 @@ export function ProfileView(props) {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                placeholder="***"
                 required
               />
               {/* display validation error */}
               {/* {values.passwordErr && <p>{values.passwordErr}</p>} */}
             </Form.Group>
             <Form.Group controlId="formEmail">
-              <Form.Label>Password:</Form.Label>
+              <Form.Label>Email: </Form.Label>
               <Form.Control
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@mail.com"
                 required
               />
               {/* display validation error */}
@@ -175,16 +124,28 @@ export function ProfileView(props) {
             </Form.Group>
 
             <Form.Group controlId="formEdit" className="mt-3">
-              <Button variant="warning" type="submit" onClick={updateUser}>
-                Edit profile
+              <Button variant="dark" onClick={updateUser}>
+                Update profile
               </Button>
+              {""}
+              <Button variant="danger" onClick={handleDelete}>
+                Delete profile
+              </Button>
+              {""}
             </Form.Group>
           </Form>
         </Col>
       </Row>
-      <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>
-        Delete profile???
-      </Button>
-    </Container>
+      <Col className="mt-5">
+        <Row>
+          <FavoriteMoviesView
+            movies={movies}
+            favoriteMovies={favoriteMovies}
+            currentUser={currentUser}
+            token={token}
+          />
+        </Row>
+      </Col>
+    </>
   );
 }
