@@ -1,10 +1,11 @@
 //this file will contain the logic for all reducers
+//function is called a reducer. it takes a state and an action .. if it's concered by the action it changed state.
 
 import { combineReducers } from "redux";
 
 import { SET_FILTER, SET_MOVIES } from "../actions/actions";
 
-//function is called a reducer. it takes a state and an action .. if it's concered by the action it changed state.
+
 function visibilityFilter(state = '', action) {
     switch (action.type) {
         case SET_FILTER:
@@ -13,7 +14,7 @@ function visibilityFilter(state = '', action) {
                 return state;
     }
 }
-
+//initialize state as empty array, because movies are array 
 function movies(state = [], action) {
     switch (action.type) {
         case SET_MOVIES:
