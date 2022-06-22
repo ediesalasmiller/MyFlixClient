@@ -23,12 +23,10 @@ function movies(state = [], action) {
     }
 }
 
-//combined reducer, groups all the reducers together and only passes them the state thhey are concerned with.
-function moviesApp(state = {}, action) {
-    return {
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action)
-    }
-}
+//combined reducer
+const moviesApp = combineReducers ({
+    visibilityFilter,
+    movies
+});
 
 export default moviesApp;
