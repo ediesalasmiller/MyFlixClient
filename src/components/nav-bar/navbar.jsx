@@ -42,7 +42,9 @@ export function NavigationBar({ user }) {
         <Navbar.Collapse id="navbarScroll"></Navbar.Collapse>
         <NavDropdown title="Profile" id="basic-nav-dropdown">
           {isAuth() && (
-            <NavDropdown.Item href={`/users/${user}`}>Profile</NavDropdown.Item>
+            <NavDropdown.Item href={`/users/${user}`}>
+              Profile
+            </NavDropdown.Item>
           )}
           {isAuth() && <NavDropdown.Item href="/">Sign in</NavDropdown.Item>}
           {isAuth() && (
