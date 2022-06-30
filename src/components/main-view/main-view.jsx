@@ -3,6 +3,8 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import "./main-view.scss";
+
 import { connect } from "react-redux";
 
 import {

@@ -21882,6 +21882,7 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _mainViewScss = require("./main-view.scss");
 var _reactRedux = require("react-redux");
 var _reactRouterDom = require("react-router-dom");
 var _actions = require("../../actions/actions");
@@ -21946,21 +21947,21 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85
+                lineNumber: 87
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbar.NavigationBar, {
             user: this.state.user,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 86
+                lineNumber: 88
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 87
+                lineNumber: 89
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -21980,7 +21981,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 89
+                lineNumber: 91
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -21994,7 +21995,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 103
+                lineNumber: 105
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22007,7 +22008,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 117
+                lineNumber: 119
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22023,7 +22024,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 126
+                lineNumber: 128
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22040,7 +22041,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 140
+                lineNumber: 142
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22057,7 +22058,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 157
+                lineNumber: 159
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22079,7 +22080,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 173
+                lineNumber: 175
             },
             __self: this
         }))));
@@ -22101,7 +22102,7 @@ exports.default = _reactRedux.connect(mapStateToProps, {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","axios":"iYoWk","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","react-router-dom":"cpyQW","../login-view/login-view":"054li","../registration-view/registration-view":"aP2YV","../movie-view/view-movie":"3cAU5","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../nav-bar/navbar":"9N4Eq","../genre-view/genre-view":"8WCoL","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-redux":"2L0if","../../actions/actions":"1Ttfj","../movies-list/movies-list":"1kGQ5"}],"iYoWk":[function(require,module,exports) {
+},{"react":"6TuXu","axios":"iYoWk","react-bootstrap/Row":"c0x1x","react-bootstrap/Col":"fbam0","react-router-dom":"cpyQW","../login-view/login-view":"054li","../registration-view/registration-view":"aP2YV","../movie-view/view-movie":"3cAU5","../director-view/director-view":"ck15y","../profile-view/profile-view":"2E7Aw","../nav-bar/navbar":"9N4Eq","../genre-view/genre-view":"8WCoL","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","react-redux":"2L0if","../../actions/actions":"1Ttfj","../movies-list/movies-list":"1kGQ5","./main-view.scss":"jyMAr"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -41124,32 +41125,11 @@ function ProfileView(props) {
             lineNumber: 145
         },
         __self: this
-    }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
-        className: "value",
-        __source: {
-            fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 146
-        },
-        __self: this
-    }, "***secret")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Row, {
-        className: "mt-3",
-        __source: {
-            fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 148
-        },
-        __self: this
-    }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
-        className: "label",
-        __source: {
-            fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 149
-        },
-        __self: this
     }, "Email:"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
         className: "value",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 150
+            lineNumber: 146
         },
         __self: this
     }, email)), /*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -41158,7 +41138,7 @@ function ProfileView(props) {
         onClick: handleShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 154
+            lineNumber: 150
         },
         __self: this
     }, "Make some changes"), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Modal, {
@@ -41166,46 +41146,46 @@ function ProfileView(props) {
         onHide: handleClose,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 158
+            lineNumber: 154
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Modal.Header, {
         closeButton: true,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 159
+            lineNumber: 155
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Modal.Title, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 160
+            lineNumber: 156
         },
         __self: this
     }, "Update your profile")), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Modal.Body, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 162
+            lineNumber: 158
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
         className: "update-info",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 163
+            lineNumber: 159
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "formUsername",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 164
+            lineNumber: 160
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 165
+            lineNumber: 161
         },
         __self: this
     }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -41216,57 +41196,57 @@ function ProfileView(props) {
         required: true,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 166
+            lineNumber: 162
         },
         __self: this
     })), " ", /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "formGridPassword",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 175
+            lineNumber: 171
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 176
+            lineNumber: 172
         },
         __self: this
     }, "Password:"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
         type: "password",
-        placeholder: "***",
+        placeholder: "new password",
         value: password,
         onChange: (e)=>setPassword(e.target.value)
         ,
         required: true,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 177
+            lineNumber: 173
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
         controlId: "formGridEmail",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 187
+            lineNumber: 183
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 188
+            lineNumber: 184
         },
         __self: this
     }, "Email: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
         type: "text",
         value: email,
-        placeholder: "email",
+        placeholder: "johndoe@email.com",
         onChange: (e)=>setEmail(e.target.value)
         ,
         required: true,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 189
+            lineNumber: 185
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
@@ -41274,7 +41254,7 @@ function ProfileView(props) {
         className: "mt-3",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 199
+            lineNumber: 195
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -41282,7 +41262,7 @@ function ProfileView(props) {
         onClick: updateUser,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 200
+            lineNumber: 196
         },
         __self: this
     }, "Update profile"), "", /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -41290,13 +41270,13 @@ function ProfileView(props) {
         onClick: handleDelete,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 204
+            lineNumber: 200
         },
         __self: this
     }, "Delete profile"), ""))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Modal.Footer, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 211
+            lineNumber: 207
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -41304,29 +41284,29 @@ function ProfileView(props) {
         onClick: handleClose,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 212
+            lineNumber: 208
         },
         __self: this
     }, "Close")))), /*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Col, {
         className: "mt-5",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 219
+            lineNumber: 215
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("p", {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 220
+            lineNumber: 216
         },
         __self: this
-    }), /*#__PURE__*/ _reactDefault.default.createElement("h2", {
+    }), /*#__PURE__*/ _reactDefault.default.createElement("h4", {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 221
+            lineNumber: 217
         },
         __self: this
-    }, "Favorite Movies:"), handleFavorite())));
+    }, username, "'s favorite movies"), handleFavorite())));
 }
 _s(ProfileView, "Mnqg3cXlQiK4irvdEAAXgblVHWE=");
 _c = ProfileView;
@@ -41358,13 +41338,15 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
 var _reactRouterDom = require("react-router-dom");
+var _movieCardScss = require("./movie-card.scss");
 class MovieCard extends _reactDefault.default.Component {
     render() {
         const { movie  } = this.props;
         return(/*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
+            class: "card",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 11
+                lineNumber: 12
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
@@ -41372,33 +41354,34 @@ class MovieCard extends _reactDefault.default.Component {
             src: movie.ImagePath,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 12
+                lineNumber: 13
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 13
+                lineNumber: 14
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 14
+                lineNumber: 15
             },
             __self: this
         }, movie.Title), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/movies/${movie._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 15
+                lineNumber: 16
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
             variant: "link",
+            class: "button",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 16
+                lineNumber: 17
             },
             __self: this
         }, " Learn more ")))));
@@ -41415,7 +41398,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"gb0ga":[function() {},{}],"9N4Eq":[function(require,module,exports) {
+},{"react":"6TuXu","prop-types":"1tgq3","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M","./movie-card.scss":"cF5gT"}],"cF5gT":[function() {},{}],"gb0ga":[function() {},{}],"9N4Eq":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$22a9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43241,6 +43224,7 @@ function MoviesList(props) {
     }));
     return(/*#__PURE__*/ _reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
         md: 12,
+        class: "background",
         style: {
             margin: "1em"
         },
@@ -43324,7 +43308,7 @@ $RefreshReg$(_c, "VisibilityFilterInput");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","react-redux":"2L0if","react-bootstrap/Form":"5ykgY","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"jUTZ8":[function() {},{}],"4d0QS":[function(require,module,exports) {
+},{"react":"6TuXu","react-redux":"2L0if","react-bootstrap/Form":"5ykgY","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"7mI2Q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eNA1M"}],"jyMAr":[function() {},{}],"jUTZ8":[function() {},{}],"4d0QS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes

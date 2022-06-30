@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ModalFooter } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Modal } from "react-bootstrap";
@@ -142,10 +142,6 @@ export function ProfileView(props) {
         <Col className="value">{username}</Col>
       </Row>
       <Row className="mt-3">
-        <Col className="label">Password:</Col>
-        <Col className="value">***secret</Col>
-      </Row>
-      <Row className="mt-3">
         <Col className="label">Email:</Col>
         <Col className="value">{email}</Col>
       </Row>
@@ -176,7 +172,7 @@ export function ProfileView(props) {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="***"
+                  placeholder="new password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -189,7 +185,7 @@ export function ProfileView(props) {
                 <Form.Control
                   type="text"
                   value={email}
-                  placeholder="email"
+                  placeholder="johndoe@email.com"
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
@@ -218,7 +214,7 @@ export function ProfileView(props) {
 
       <Col className="mt-5">
         <p></p>
-        <h2>Favorite Movies:</h2>
+        <h4>{username}'s favorite movies</h4>
 
         {/* Calling function to render users favorite movies on the profile page */}
         {handleFavorite()}
