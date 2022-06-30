@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Modal } from "react-bootstrap";
-import "./profile-view";
+import "./profile-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
 
 // would like to put this in the modal import ProfileUpdate from "../profile-update/profile-update";
@@ -46,7 +46,6 @@ export function ProfileView(props) {
           Username: username,
           Email: email,
           Password: password,
-          FavoriteMovies: favoriteMovies,
         },
         {
           headers: { Authorization: "Bearer " + token },
@@ -134,7 +133,10 @@ export function ProfileView(props) {
 
   return (
     <Container id="profile-view">
-      <h1>Your Profile</h1>
+      <header>
+        <h1>Your Profile</h1>
+      </header>
+
       <Row>
         <Col className="label">Username:</Col>
         <Col className="value">{username}</Col>
@@ -149,7 +151,7 @@ export function ProfileView(props) {
       </Row>
 
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="primary" class="changes" onClick={handleShow}>
           Make some changes
         </Button>
 

@@ -191,20 +191,6 @@ class MainView extends React.Component {
               );
             }}
           />
-
-          {/* <Route
-            path={`/users/:username/movies/:id`}
-            render={({ history }) => {
-              if (!user)
-                return (
-                  <Col>
-                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                  </Col>
-                );
-              if (movies.length === 0) return <div className="main-view" />;
-              return <Col md={8}></Col>;
-            }}
-          /> */}
         </Row>
       </Router>
     );
