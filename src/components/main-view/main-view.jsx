@@ -7,11 +7,7 @@ import "./main-view.scss";
 
 import { connect } from "react-redux";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { setMovies } from "../../actions/actions";
 
@@ -92,12 +88,14 @@ class MainView extends React.Component {
             exact
             path="/"
             render={() => {
-              if (!user) return;
-              <Col>
-                <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-              </Col>;
-
+              if (!user)
+                return (
+                  <Col>
+                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                  </Col>
+                );
               if (movies.length === 0) return <div className="main-view" />;
+              // #6
               return <MoviesList movies={movies} />;
             }}
           />
