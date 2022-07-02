@@ -51,7 +51,7 @@ export function LoginView(props) {
         .catch((err) => {
           console.log(err);
           alert("Invalid user");
-          // window.open("/register", "_self");
+          window.open("/register", "_self");
         });
     }
   };
@@ -80,7 +80,7 @@ export function LoginView(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
           {/* code added here to display validation error */}
-          {/* {passwordErr && <p>{passwordErr}</p>} */}
+          {passwordErr && <p>{passwordErr}</p>}
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={handleSubmit}>

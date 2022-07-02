@@ -31781,7 +31781,7 @@ function LoginView(props) {
         }).catch((err)=>{
             console.log(err);
             alert("Invalid user");
-        // window.open("/register", "_self");
+            window.open("/register", "_self");
         });
     };
     return(/*#__PURE__*/ _reactDefault.default.createElement(_reactBootstrap.Container, {
@@ -31853,7 +31853,13 @@ function LoginView(props) {
             lineNumber: 76
         },
         __self: this
-    })), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+    }), passwordErr && /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        __source: {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 83
+        },
+        __self: this
+    }, passwordErr)), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
         variant: "primary",
         type: "submit",
         onClick: handleSubmit,
