@@ -95,7 +95,6 @@ class MainView extends React.Component {
                   </Col>
                 );
               if (movies.length === 0) return <div className="main-view" />;
-              // #6
               return <MoviesList movies={movies} />;
             }}
           />
