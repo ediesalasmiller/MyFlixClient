@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Modal } from "react-bootstrap";
 import "./profile-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
+import { Link } from "react-router-dom";
 
 // would like to put this in the modal import ProfileUpdate from "../profile-update/profile-update";
 
@@ -81,27 +82,35 @@ export function ProfileView(props) {
   };
   //delete Movie from favorites button
   const handleMovieDelete = (movie) => {
+    const currentUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
     axios
       .delete(
         `https://edieflixdb.herokuapp.com/users/${currentUser}/favorites/${movie._id}`,
+        {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
-      .then(() => {
+      .then((response) => {
         alert(`movie deleted.`);
         window.open("/users/:username", "_self");
+        console.log(response);
       })
       .catch((error) => console.error(error));
   };
 
   //render favorite movies
   //update favorite movies
-  const handleFavorite = () => {
-    console.log(movies);
+  const handleFavorite = (movie) => {
     if (movies.length + 0) {
       return (
         <Row className="justify-content-md-center">
           {favoriteMovies.length === 0 ? (
-            <h5>Add some movies to your list</h5>
+            <p>
+              {" "}
+              <h3>
+                <Link to={"/movies"}>Add some movies to your list!</Link>
+              </h3>
+            </p>
           ) : (
             favoriteMovies.map((movieId, i) => (
               <Col md={6} lg={4}>
@@ -114,7 +123,7 @@ export function ProfileView(props) {
                   variant="outline-primary"
                   size="sm"
                   onClick={() => {
-                    handleMovieDelete(_id);
+                    this.handleMovieDelete(movie);
                   }}
                 >
                   Remove from List
@@ -194,7 +203,7 @@ export function ProfileView(props) {
               </Form.Group>
               <Form.Group controlId="formEdit" className="mt-3">
                 <Button variant="dark" onClick={updateUser}>
-                  Update profile
+                  Save changes
                 </Button>
                 {""}
                 <Button variant="danger" onClick={handleDelete}>
