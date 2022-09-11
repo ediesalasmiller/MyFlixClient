@@ -1,8 +1,6 @@
 # MyFlixClient
- Color scheme :
- teal
- lavendar blush
- firebrick
+Using React, building a client-side for an application called myFlix based on its existing server-side code (REST API and database).
+
 
 -view-movie had add favorite movie
 -profile view has delete favorite movie
