@@ -5,7 +5,7 @@ Using React, building a client-side for an application called myFlix based on it
 *  As a user, I want to be able to access information on movies, directors, and genres so that I
 can learn more about movies I’ve watched or am interested in.
 * As a user, I want to be able to create a profile so I can save data about my favorite movies.
-This web application, created with React.js and Sass, provides users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies. it`s based on its existing server-side code (REST API and database).
+This web application, created with React.js and Sass, provides users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies. it`s based on its [existing server-side code](https://github.com/ediesalasmiller/movie_api) (REST API and database).
 
 ## Key Features
 * Filter events by city.
